@@ -3,6 +3,14 @@ name: Economy Designer 4.3.1 Playwright
 on:
   push:
     branches: [main]
+    paths:
+      - 'source/**'
+      - 'reference/**'
+      - 'tests/**'
+      - 'scripts/**'
+      - 'package*.json'
+      - 'playwright.config.mjs'
+      - '.github/workflows/playwright.yml'
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -10,35 +18,49 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: economy431-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   browser-regression:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+        with:
+          persist-credentials: false
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
+      - name: Verify preserved original and permitted runtime edits
+        run: node scripts/verify-source.mjs
       - name: Install test dependencies
         run: npm install
-
+      - name: Record dependency versions
+        run: |
+          mkdir -p evidence
+          npm ls @playwright/test > evidence/dependencies.txt
+          cp package-lock.json evidence/dependency-lock.json
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
-
       - name: Run Playwright regression suite
-        run: npm run test:e2e
-
-      - name: Upload Playwright report on failure
-        if: failure()
+        run: |
+          set -o pipefail
+          npm run test:e2e 2>&1 | tee evidence/playwright.log
+      - name: Summarize actual results
+        if: always()
+        run: node scripts/summarize-results.mjs
+      - name: Upload evidence on success or failure
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report
+          name: economy431-evidence-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
+            evidence/
             playwright-report/
             test-results/
-          if-no-files-found: ignore
+          retention-days: 30
+          if-no-files-found: error

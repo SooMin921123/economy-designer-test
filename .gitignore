@@ -2,3 +2,8 @@ node_modules/
 public/
 playwright-report/
 test-results/
+evidence/
+# Never commit personal learning state or backups.
+**/*backup*.json
+**/*personal*.json
+**/*storage-state*.json
