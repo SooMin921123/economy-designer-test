@@ -39,7 +39,7 @@ test('4.3.1 boots cleanly in Desktop Chromium and mobile viewport', async ({ pag
 
 test('localStorage survives an actual settings change and reload', async ({ page }) => {
   await boot(page);
-  await page.locator('[data-action="settings"]').click();
+  await page.locator('header.top [data-action="settings"]').click();
   const reduced = page.locator('[data-setting="reduced"]');
   await expect(reduced).toBeVisible();
   await reduced.check();
@@ -51,7 +51,7 @@ test('localStorage survives an actual settings change and reload', async ({ page
 
   await page.reload({ waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => typeof document.querySelector === 'function');
-  await page.locator('[data-action="settings"]').click();
+  await page.locator('header.top [data-action="settings"]').click();
   await expect(page.locator('[data-setting="reduced"]')).toBeChecked();
 });
 
@@ -102,7 +102,7 @@ test('empty C13-04 slider value is restored after navigation and full reload', a
 
 test('restore preview and cancel are non-destructive', async ({ page }) => {
   await boot(page);
-  await page.locator('[data-action="settings"]').click();
+  await page.locator('header.top [data-action="settings"]').click();
   await page.locator('[data-setting="reduced"]').check();
 
   const beforeMemory = await appEval(page, 'comparableState431(state)');
