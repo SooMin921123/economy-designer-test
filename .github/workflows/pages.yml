@@ -1,0 +1,115 @@
+name: Deploy Economy 4.3.1 Pages and verify HTTPS
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'source/**'
+      - 'scripts/**'
+      - 'deployment-tests/**'
+      - 'package*.json'
+      - 'playwright*.mjs'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: economy431-pages
+  cancel-in-progress: false
+jobs:
+  build:
+    if: github.repository == 'SooMin921123/economy-designer-test' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Verify unchanged original and learning content
+        run: node scripts/verify-source.mjs
+      - name: Install dependencies and Chromium
+        run: |
+          npm install
+          npm ls @playwright/test > evidence/dependencies.txt
+          cp package-lock.json evidence/dependency-lock.json
+          npx playwright install --with-deps chromium
+      - name: Run existing regression suite before deployment
+        run: |
+          set -o pipefail
+          npm run test:e2e 2>&1 | tee evidence/predeploy.log
+      - name: Export clean app package with original icon artwork
+        run: node scripts/build-pages.mjs
+      - name: Set up Pages
+        uses: actions/configure-pages@v5
+      - name: Upload only approved deploy files
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - name: Save build and regression evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pages-build-evidence-${{ github.run_id }}
+          path: |
+            evidence/
+            playwright-report/
+            test-results/
+          retention-days: 30
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to authorized test repository Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+  verify-live:
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PAGES_URL: ${{ needs.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install fresh isolated browser tests
+        run: |
+          mkdir -p evidence
+          npm install
+          npm ls @playwright/test > evidence/live-dependencies.txt
+          cp package-lock.json evidence/live-dependency-lock.json
+          npx playwright install --with-deps chromium
+      - name: Confirm this exact deployment is publicly served
+        run: node scripts/wait-pages.mjs
+      - name: Test actual public HTTPS URL
+        run: |
+          set -o pipefail
+          npx playwright test --config=playwright.live.config.mjs 2>&1 | tee evidence/live.log
+      - name: Report actual results
+        if: always()
+        run: node scripts/summarize-live.mjs
+      - name: Preserve public browser evidence on success and failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pages-live-evidence-${{ github.run_id }}
+          path: |
+            evidence/
+            live-playwright-report/
+            live-test-results/
+          retention-days: 30
+          if-no-files-found: error
