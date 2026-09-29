@@ -17,7 +17,9 @@ if (!html.includes("STORE='econverse431-guarded'")) {
 await fs.mkdir(OUT, { recursive: true });
 
 const pwaHead = '<link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icon-180.png"><meta name="apple-mobile-web-app-capable" content="yes">';
-const index = html.includes('rel="manifest"')
+const headEnd = html.indexOf('</head>');
+const hasManifestLink = headEnd >= 0 && /<link\b[^>]*rel=["']manifest["']/i.test(html.slice(0, headEnd));
+const index = hasManifestLink
   ? html
   : html.replace('</head>', pwaHead + '</head>');
 await fs.writeFile(path.join(OUT, 'index.html'), index, 'utf8');
