@@ -167,12 +167,12 @@ test('temporary browser profile survives full Chromium process restart offline',
     const record=(await disk(page)).course41.records['C03-04'];
     await ctx.close();ctx=null;
     ctx=await chromium.launchPersistentContext(dir,{...options,offline:true});
-    await ctx.tracing.start({screenshots:true,snapshots:true,sources:true});
+    // The runner's trace:'on' already records this context; do not start tracing twice.
     page=await ctx.newPage();const response=await boot(page,url('index.html#course-task/C03-04'));
     expect(response.fromServiceWorker()).toBe(true);
     expect((await disk(page)).course41.records['C03-04']).toEqual(record);
     await page.screenshot({path:info.outputPath('public-process-restart-offline.png'),fullPage:true});
-    await ctx.tracing.stop({path:info.outputPath('public-process-restart.trace.zip')});
+    // Let the runner finalize and attach its trace.zip, including failures and assertions.
     await info.attach('restart-scope',{body:'Isolated CI browser process restart. Not phone OS restart or installed home-screen app.',contentType:'text/plain'});
   }finally{if(ctx)await ctx.close();await fs.rm(dir,{recursive:true,force:true});}
 });
