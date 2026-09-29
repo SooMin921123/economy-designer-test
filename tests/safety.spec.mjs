@@ -18,6 +18,12 @@ const test = base.extend({
 const app = (page, source) => page.evaluate(code => (0, eval)(code), source);
 const disk = page => page.evaluate(key => JSON.parse(localStorage.getItem(key)), STORE);
 const comparable = value => ({ ...value, activeSeconds42: 0 });
+const childOptions = testInfo => ({
+  viewport: testInfo.project.use.viewport,
+  isMobile: testInfo.project.name === 'mobile-chromium',
+  hasTouch: testInfo.project.name === 'mobile-chromium',
+  serviceWorkers: 'allow'
+});
 const protectedContent = value => ({
   regular: value.course41.records,
   notes: value.course41.notes,
@@ -68,11 +74,11 @@ async function readySW(page) {
   await page.waitForFunction(() => !!navigator.serviceWorker.controller, null, { timeout: 10000 });
 }
 
-test('existing synthetic solved answers and notes survive reload; contexts stay isolated', async ({ page, browser }) => {
+test('existing synthetic solved answers and notes survive reload; contexts stay isolated', async ({ page, browser }, testInfo) => {
   const before = await seed(page);
   await page.reload({ waitUntil: 'domcontentloaded' });
   expect(protectedContent(await disk(page))).toEqual(protectedContent(before));
-  const other = await browser.newContext();
+  const other = await browser.newContext(childOptions(testInfo));
   try {
     const otherPage = await other.newPage();
     await boot(otherPage, 'http://127.0.0.1:4173/index.html');
@@ -134,29 +140,56 @@ test('confirmed synthetic restore persists and checkpoint recovery restores prio
   expect(protectedContent(await disk(page))).toEqual(protectedContent(before));
 });
 
-test('offline new tab is served by service worker; cold offline context cannot load', async ({ page, context, browser }) => {
+test('offline new tab is served by service worker; cold offline context cannot load', async ({ page, context, browser }, testInfo) => {
   const before = await seed(page);
   await readySW(page);
+  // Run 7 failed at the network-emulation precondition, not at an app assertion.
+  // Avoid enabling a second CDP Network agent after setting offline conditions.
+  // Routing disables the HTTP cache; it does not replace the app's service worker.
+  await context.route('**/*', route => route.continue());
+  const fresh = await context.newPage(); // about:blank, has never loaded the app
+  const errors = [], networkFailures = [];
+  fresh.on('pageerror', error => errors.push(error.message));
+  fresh.on('requestfailed', request => networkFailures.push({ url: request.url(), failure: request.failure() }));
   await context.setOffline(true);
-  const fresh = await context.newPage();
-  const session = await context.newCDPSession(fresh);
-  await session.send('Network.enable');
-  await session.send('Network.setCacheDisabled', { cacheDisabled: true });
   await page.close();
   try {
     const response = await boot(fresh, 'http://127.0.0.1:4173/index.html#course-task/C03-04');
     expect(response.fromServiceWorker()).toBe(true);
     expect(await fresh.evaluate(() => navigator.onLine)).toBe(false);
+    // This unknown path is not in the SW allowlist and has never been cached.
+    // Offline proof requires an actual failed network request, not just an indicator.
+    const probe = await fresh.evaluate(async () => {
+      try {
+        const result = await fetch('./__qa_uncached_probe__?nonce=' + Date.now(), { cache: 'no-store', signal: AbortSignal.timeout(5000) });
+        return { blocked: false, status: result.status };
+      } catch (error) {
+        return { blocked: error.name === 'TypeError', error: error.name, message: error.message };
+      }
+    });
+    expect(probe.blocked, JSON.stringify(probe)).toBe(true);
     expect((await disk(fresh)).course41.records['C03-04']).toEqual(before.course41.records['C03-04']);
     await expect(fresh.locator('[data-action="c41-submit"]')).toBeVisible();
     await fresh.locator('[data-cfield41="num"][data-i="0"]').fill('17');
     await app(fresh, 'stash()');
     expect((await disk(fresh)).course41.drafts['C03-04'].nums[0]).toBe('17');
-    const cold = await browser.newContext({ offline: true });
+    const cold = await browser.newContext({ ...childOptions(testInfo), offline: true });
     try {
       const coldPage = await cold.newPage();
       await expect(coldPage.goto('http://127.0.0.1:4173/index.html', { timeout: 10000 })).rejects.toThrow();
     } finally { await cold.close(); }
+    expect(errors).toEqual([]);
+    await testInfo.attach('offline-proof', { body: JSON.stringify({ servedByServiceWorker: true, uncachedProbe: probe, networkFailures, runtimeErrors: errors, viewport: fresh.viewportSize() }, null, 2), contentType: 'application/json' });
+    const screenshot = testInfo.outputPath('offline-new-tab.png');
+    await fresh.screenshot({ path: screenshot, fullPage: true });
+    await testInfo.attach('offline-new-tab', { path: screenshot, contentType: 'image/png' });
+  } catch (error) {
+    if (!fresh.isClosed()) {
+      const screenshot = testInfo.outputPath('offline-new-tab-failed.png');
+      await fresh.screenshot({ path: screenshot, fullPage: true }).catch(() => {});
+    }
+    await testInfo.attach('offline-failure-diagnostics', { body: JSON.stringify({ errors, networkFailures }, null, 2), contentType: 'application/json' });
+    throw error;
   } finally {
     await context.setOffline(false);
     await fresh.close();
@@ -196,12 +229,13 @@ with zipfile.ZipFile(sys.argv[1]) as z:
   const hosted = path.resolve('public', folder);
   await fs.mkdir(hosted, { recursive: true });
   for (const name of assets) await fs.copyFile(path.join(unpacked, name), path.join(hosted, name));
-  const exported = await browser.newContext();
+  const exported = await browser.newContext(childOptions(testInfo));
   const exportPage = await exported.newPage();
   const errors = [];
   exportPage.on('pageerror', error => errors.push(error.message));
   try {
     await boot(exportPage, `http://127.0.0.1:4173/${folder}/index.html`);
+    expect(exportPage.viewportSize()).toEqual(testInfo.project.use.viewport);
     expect(await app(exportPage, '[COURSE41.lessons.length,regularTasks42().length,GUIDES43.length]')).toEqual([72, 195, 30]);
     for (const size of [180, 192, 512]) {
       const actual = await exportPage.evaluate(async size => {
@@ -218,5 +252,5 @@ with zipfile.ZipFile(sys.argv[1]) as z:
     await exportPage.screenshot({ path: testInfo.outputPath('exported-pwa-offline.png'), fullPage: true });
     expect(errors).toEqual([]);
   } finally { await exported.close(); }
-  await testInfo.attach('export-scope', { body: JSON.stringify({ files: names, scope: 'App-generated package, real PNG assets, isolated Chromium offline reload. Not OS installation.' }, null, 2), contentType: 'application/json' });
+  await testInfo.attach('export-scope', { body: JSON.stringify({ files: names, viewport: testInfo.project.use.viewport, scope: 'App-generated package, real PNG assets, isolated Chromium offline reload. Not OS installation.' }, null, 2), contentType: 'application/json' });
 });
