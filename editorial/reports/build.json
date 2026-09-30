@@ -1,0 +1,17 @@
+{
+  "edition": "ko-1",
+  "baseline": "9cca53cd0691571f0748c4d2b85f21442b105dd4",
+  "baselineSHA256": "7e634b816ed143e752569bc9ddc509d2d026e92cad08939952998e2d23072706",
+  "revisedSHA256": "7746f10511bb6abb7c22d2ec59deebaf3ae80832b0be4762530c79d1bdbd7b79",
+  "textFieldChanges": 1193,
+  "literalChanges": 1685,
+  "headingsRendererReplacements": 1,
+  "objects": {
+    "CL41": 72,
+    "CT41": 13
+  },
+  "executableASTOutsidePresentationChange": "identical after masking string literals",
+  "storageKey": "econverse431-guarded",
+  "gradingData": "runtime equality must also be checked by the browser suite",
+  "sourceDocumentsPublished": false
+}
