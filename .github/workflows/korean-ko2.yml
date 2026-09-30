@@ -1,0 +1,81 @@
+name: Korean textbook prose ko-2
+on:
+  push:
+    branches: [editorial/ko-2]
+    paths: [editorial/ko2/build-request.txt]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: korean-ko2-review
+  cancel-in-progress: false
+jobs:
+  review:
+    if: github.ref == 'refs/heads/editorial/ko-2'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Prepare approved-style copy and immutable before-after review
+        run: |
+          rm -rf revised editorial/reports editorial/review evidence playwright-report test-results delivery _site
+          node editorial/ko2/prepare.mjs
+          node scripts/verify-source.mjs
+      - name: Install locked tools
+        run: |
+          npm ci --ignore-scripts
+          npx playwright install --with-deps chromium
+      - name: Compile and inspect actual learner text
+        run: |
+          node editorial/build.mjs
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/ko2-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          sleep 2
+          node editorial/inspect.mjs
+          node editorial/ko2/audit.mjs
+      - name: Run all desktop and mobile regression tests
+        run: |
+          set -o pipefail
+          mkdir -p evidence
+          npm run test:e2e 2>&1 | tee evidence/ko2-test-console.log
+      - name: Summarize exact test results
+        if: always()
+        run: if [ -f evidence/results.json ]; then node editorial/summarize-tests.mjs; fi
+      - name: Validate clean PWA export and assemble delivery
+        run: |
+          node scripts/build-pages.mjs
+          node editorial/package-delivery.mjs
+          node editorial/ko2/delivery.mjs
+      - name: Commit tested edition and reports to the review branch only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add editorial/ko editorial/interface/zz-ko2.json editorial/build.mjs editorial/presentation.js tests/editorial.spec.mjs revised editorial/reports editorial/review editorial/ko2/reports
+          git diff --cached --quiet || git commit -m 'Build and validate approved-style ko-2 edition [skip ci]'
+          git fetch origin editorial/ko-2
+          git rebase origin/editorial/ko-2
+          git push origin HEAD:editorial/ko-2
+      - uses: actions/upload-artifact@v4
+        with:
+          name: economy-431-ko2-delivery-${{ github.run_id }}
+          path: delivery/
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: economy-431-ko2-evidence-${{ github.run_id }}
+          path: |
+            evidence/
+            playwright-report/
+            test-results/
+            editorial/ko2/reports/
+            editorial/reports/
+            editorial/review/
+          if-no-files-found: warn
