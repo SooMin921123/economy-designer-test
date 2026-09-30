@@ -81,7 +81,7 @@
   },
   {
     "name": "choiceScene",
-    "characters": 1064
+    "characters": 1070
   },
   {
     "name": "publicScene",
@@ -117,11 +117,11 @@
   },
   {
     "name": "taskControls",
-    "characters": 3618
+    "characters": 3621
   },
   {
     "name": "solutionHTML",
-    "characters": 1400
+    "characters": 1424
   },
   {
     "name": "confidenceHTML",
@@ -145,7 +145,7 @@
   },
   {
     "name": "labResultText",
-    "characters": 643
+    "characters": 649
   },
   {
     "name": "paintLab",
@@ -213,11 +213,11 @@
   },
   {
     "name": "choiceBoard41",
-    "characters": 1868
+    "characters": 1896
   },
   {
     "name": "corePaintLab41",
-    "characters": 916
+    "characters": 928
   },
   {
     "name": "courseExternalLabel41",
@@ -285,7 +285,7 @@
   },
   {
     "name": "courseAudit41",
-    "characters": 4261
+    "characters": 4273
   },
   {
     "name": "oldControls42",
@@ -293,7 +293,7 @@
   },
   {
     "name": "oldSolution42",
-    "characters": 1234
+    "characters": 1240
   },
   {
     "name": "oldVisual42",
@@ -301,7 +301,7 @@
   },
   {
     "name": "oldHint42",
-    "characters": 796
+    "characters": 808
   },
   {
     "name": "tradeVisual42",
@@ -425,7 +425,7 @@
   },
   {
     "name": "labBefore43",
-    "characters": 4572
+    "characters": 4620
   },
   {
     "name": "sourceBefore43",

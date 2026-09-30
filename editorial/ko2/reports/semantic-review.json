@@ -1,0 +1,43 @@
+{
+  "base": "d98c987d0581dd66e829f1d3ba8d9333c30916b4",
+  "preserved": [
+    "original and recovery baseline bytes",
+    "numeric answer keys and values",
+    "grading algorithms",
+    "localStorage keys and restore guards",
+    "counts and task identifiers",
+    "choice/array lengths"
+  ],
+  "beyondStyle": [
+    {
+      "id": "C01-05",
+      "change": "Replace paper-colour distraction with economic-policy comparisons; correct answer index unchanged."
+    },
+    {
+      "id": "C06-07",
+      "change": "Reword distractors to contrast an agreement with price equality or few suppliers; no new legal judgment."
+    },
+    {
+      "id": "C11-07",
+      "change": "Ask directly about uncertainty and preference for safety; keep correction target and answer indices."
+    },
+    {
+      "id": "G07-1/2",
+      "change": "Replace the real-case-legality disclaimer question with a question identifying collective action rights. Two options and correct index 1 retained. This changes the tested subtopic, not just style."
+    },
+    {
+      "id": "R01-1",
+      "change": "Replace deletion-of-keyword distractor with an incorrect economic-policy claim; correct index unchanged."
+    },
+    {
+      "id": "S1-3,C15-09,X15-1",
+      "change": "Clarify incorrect assertions about policy purpose and conclusions unsupported by missing data; truth values and answer indices retained."
+    }
+  ],
+  "nonGradingCodeChange": "The optional-caution self-check now accepts an empty string; numeric grading and all 36 existing browser tests are retained.",
+  "editorialLimits": [
+    "No claim that automated browser success certifies prose quality or publication readiness.",
+    "Physical iPhone/Android installation not tested.",
+    "Public main branch and Pages site not changed."
+  ]
+}
