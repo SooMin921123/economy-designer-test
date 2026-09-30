@@ -1,1 +1,1 @@
-ko-2 integration run 3: optional caution content checks, preserved grading/storage, and the first six units of revised exercises.
+ko-2 complete integration: 72 lessons; 219 regular and integrated questions; 30 guided exercises; 12 focused lessons; 36 focused entries; 12 experiments; 6 writing activities; all unit and navigation introductions. Validate authored text, every lesson screen and all existing functional regressions.
