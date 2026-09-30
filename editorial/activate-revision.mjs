@@ -21,11 +21,11 @@ if(JSON.stringify(p)!==before){await fs.writeFile('package.json',JSON.stringify(
 await replaceOnce('scripts/prepare-pwa.mjs',"path.join(ROOT, 'source', 'economy-designer-4.3.1.html')","path.join(ROOT, 'revised', 'economy-designer-4.3.1-ko.html')");
 await replaceOnce('scripts/prepare-pwa.mjs',"name: '경제 설계자 4.3 · 도시의 두 번째 장부'","name: '경제 설계자 4.3.1 · 문장 개정판'");
 await replaceOnce('scripts/prepare-pwa.mjs',"description: '개념 강의와 시각적 퍼즐로 배우는 첫 세 경제 사건'","description: '경제 개념 72강과 단계별 풀이, 연습 문제로 공부하는 경제 학습실'");
-await replaceOnce('scripts/build-pages.mjs',"fs.readFile('"+oldPath+"', 'utf8')","fs.readFile('"+newPath+"', 'utf8')");
+await replaceOnce('scripts/build-pages.mjs',"'"+oldPath+"'","'"+newPath+"'");
 await replaceOnce('scripts/build-pages.mjs',"sourceEdits:'Only previously verified two function-closing braces'","sourceEdits:'Korean wording edition ko-1; original verified source preserved; numeric data and identifiers checked separately'");
 // Keep complete-script equality assertions: only their expected input artifact changes.
-await replaceOnce('tests/safety.spec.mjs',"fs.readFile('"+oldPath+"','utf8')","fs.readFile('"+newPath+"','utf8')");
-await replaceOnce('deployment-tests/live.spec.mjs',"fs.readFile('"+oldPath+"','utf8')","fs.readFile('"+newPath+"','utf8')");
+await replaceOnce('tests/safety.spec.mjs',"'"+oldPath+"'","'"+newPath+"'");
+await replaceOnce('deployment-tests/live.spec.mjs',"'"+oldPath+"'","'"+newPath+"'");
 await replaceOnce('editorial/ko/questions-11.json','환율 상승을 받는 쪽과 내는 쪽','환율 상승과 거래 당사자의 입장');
 assert.equal(digest(await fs.readFile(oldPath)),digest(baseline));
 await fs.mkdir('editorial/reports',{recursive:true});
