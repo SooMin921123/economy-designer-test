@@ -1,0 +1,22 @@
+name: Korean edition compiler diagnostics
+on:
+  push:
+    branches: [editorial/ko-431]
+    paths: [.github/workflows/editorial-debug.yml, editorial/debug-request.txt]
+permissions:
+  contents: read
+jobs:
+  parse:
+    if: github.ref == 'refs/heads/editorial/ko-431'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install --ignore-scripts && npm install --no-save --ignore-scripts acorn@8.15.0
+      - name: Compile with exact parser context
+        run: node editorial/debug-build.mjs
