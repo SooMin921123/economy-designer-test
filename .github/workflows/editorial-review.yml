@@ -14,6 +14,25 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: editorial/ko-431
+      - name: Validate editorial inputs and remove stale generated reports
+        run: |
+          rm -rf revised editorial/reports editorial/review
+          python3 - <<'PY'
+          import json, pathlib, sys
+          errors=[]
+          for p in sorted(pathlib.Path('editorial/ko').glob('*.json')):
+              try:
+                  json.loads(p.read_text(encoding='utf-8'))
+              except json.JSONDecodeError as e:
+                  text=p.read_text(encoding='utf-8')
+                  detail={'file':str(p),'line':e.lineno,'column':e.colno,'message':e.msg,'context':text[max(0,e.pos-160):e.pos+160]}
+                  errors.append(detail)
+                  print(json.dumps(detail,ensure_ascii=False))
+          pathlib.Path('editorial/reports').mkdir(parents=True,exist_ok=True)
+          pathlib.Path('editorial/reports/input-validation.json').write_text(json.dumps({'passed':not errors,'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')
+          if errors: sys.exit(1)
+          print('All editorial JSON inputs parsed successfully.')
+          PY
       - uses: actions/setup-node@v4
         with:
           node-version: 20
