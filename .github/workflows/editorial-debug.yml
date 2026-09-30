@@ -2,7 +2,7 @@ name: Korean edition compiler diagnostics
 on:
   push:
     branches: [editorial/ko-431]
-    paths: [.github/workflows/editorial-debug.yml, editorial/debug-request.txt]
+    paths: [.github/workflows/editorial-debug.yml, editorial/debug-request.txt, editorial/debug-build.mjs, editorial/build.mjs]
 permissions:
   contents: read
 jobs:
