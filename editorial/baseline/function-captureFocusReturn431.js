@@ -1,0 +1,1 @@
+function captureFocusReturn431(){const s=currentStage();if(!s||s.kind!=='task'||!r)return null;const copy=cleanResponse(s,r);copy.assisted=true;state.drafts[s.id]=copy;state.returnTask=s.id;r=copy;feedback=null;expose41(s,'해설 확인 전후의 관련 강의 참고');return RELATED41[s.id];}

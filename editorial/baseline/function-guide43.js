@@ -1,0 +1,1 @@
+function guide43(ch,slot,title,lesson,premise,model,steps){const id='G'+String(ch).padStart(2,'0')+'-'+slot;GUIDES43.push({id,ch,title,lesson,premise,model,steps,refs:CL41[lesson].refs.slice(),origin:'4.3 신규 안내형 구성. 기존 강의의 개념과 모형을 적용하며 일부 조건·수치는 승계하고 일부는 변경했다. 30개 모두 서로 다른 신규 경제 개념이나 독립 전이 문항이라는 뜻은 아님'});}

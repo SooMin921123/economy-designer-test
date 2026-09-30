@@ -1,0 +1,61 @@
+{
+  "schema": "econverse-4",
+  "contentVersion": 1,
+  "build": "4.3.1-recovery.1",
+  "read": {},
+  "records": {},
+  "drafts": {},
+  "notes": {
+    "choice": "",
+    "public": "",
+    "trade": ""
+  },
+  "last": null,
+  "settings": {
+    "size": 17,
+    "reduced": false,
+    "sound": false
+  },
+  "exposure": {},
+  "editor": {
+    "text": "",
+    "snapshots": []
+  },
+  "returnTask": null,
+  "reviewClosed": {},
+  "m01Version": "4.0.1-m01",
+  "course41": {
+    "version": 1,
+    "read": {},
+    "checks": {},
+    "records": {},
+    "drafts": {},
+    "exposed": {},
+    "notes": {
+      "0": "",
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "",
+      "7": "",
+      "8": "",
+      "9": "",
+      "10": "",
+      "11": "",
+      "12": "",
+      "13": "",
+      "14": "",
+      "15": ""
+    },
+    "last": null
+  },
+  "projects42": {},
+  "activeSeconds42": 0,
+  "practice43": {
+    "version": 1,
+    "records": {},
+    "last": null
+  }
+}

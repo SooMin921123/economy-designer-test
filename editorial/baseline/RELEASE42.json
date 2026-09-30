@@ -1,0 +1,7 @@
+{
+  "name": "경제 설계자 4.3",
+  "version": "4.3.1-recovery.1",
+  "authorRuntime": "NOT_RUN",
+  "note": "제작자 실행 도구가 ClientError를 반환함. 코드·파일 반영과 런타임 검증은 구분한다.",
+  "targetMinutes": 1800
+}

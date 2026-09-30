@@ -1,0 +1,1 @@
+function(){return studioBefore72().replaceAll('45강','72강');}

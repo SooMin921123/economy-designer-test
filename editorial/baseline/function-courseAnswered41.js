@@ -1,0 +1,1 @@
+function(t,a){if(t.type==='ppf')return Number.isFinite(num(a.value))&&Number.isFinite(num(a.nums[0]));if(t.type==='trade')return Number.isFinite(num(a.value))&&a.nums.length===2&&a.nums.every(x=>Number.isFinite(num(x)));return oldAnswered42(t,a);}

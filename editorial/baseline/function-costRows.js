@@ -1,0 +1,1 @@
+function costRows(rows){const g=rows.map(x=>x[1]-x[2]);return rows.map((x,i)=>{const im=Math.max(...g.filter((_,j)=>j!==i));return {name:x[0],benefit:x[1],cost:x[2],g:g[i],implicit:im,oc:x[2]+im,surplus:g[i]-im};});}

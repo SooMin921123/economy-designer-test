@@ -1,0 +1,1 @@
+async function handleRestoreFile431(event){const input=event.target,file=input.files?.[0];if(!file)return;RESTORE431=null;try{if(file.size>12000000)throw new Error('백업 파일이12MB를 넘습니다. 원본을 보관하고 별도 검토하세요.');stageRestore431(await file.text(),file.name);}catch(e){alert('복원을 시작하지 않았습니다: '+e.message);if(route.view==='course-restore-preview')refresh();}finally{input.value='';}}

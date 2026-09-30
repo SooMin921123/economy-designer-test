@@ -1,0 +1,1 @@
+function savedValue431(raw,fallback,required){if(!raw||typeof raw!=='object')return fallback;if(!Object.prototype.hasOwnProperty.call(raw,'value'))return required?null:fallback;return typeof raw.value==='number'&&Number.isFinite(raw.value)?raw.value:null;}

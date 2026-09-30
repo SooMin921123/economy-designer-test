@@ -1,0 +1,1 @@
+function(t){if(t.type==='ppf')return 'X에 사용한 생산 자원의 비율은X/X최대이다. 남은 비율을Y최대량에 곱한다. 곡선 위와 내부를 구분한다.';if(t.type==='trade')return '양국의X1기회비용을Y단위로 계산한다. A의추가이익=받는Y−X수출량×A비용, B의이익=X수입량×B비용−주는Y이다. 수량 범위도 확인한다.';return oldHint42(t);}

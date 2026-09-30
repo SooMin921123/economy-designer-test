@@ -1,0 +1,21 @@
+function patchTests431(){const out=[];function test(name,fn){try{out.push({name,ok:!!fn()});}catch(e){out.push({name,ok:false,error:String(e.message||e)});}}function rejected(fn){try{fn();return false;}catch(e){return true;}}
+ test('431 기존15단원·72강·219활동·30안내형 수 유지',()=>COURSE41.chapters.length===15&&COURSE41.lessons.length===72&&COURSE41.tasks.length===219&&GUIDES43.length===30);
+ test('431 강의 연결표의 모든 ID 존재',()=>Object.entries(LINKS431).every(([task,lesson])=>CT41[task]?.lesson===lesson&&!!CL41[lesson]));
+ test('431 이자복습→단리복리 / 투입량→표의방향 연결',()=>CT41['R10-1'].lesson==='L10-2'&&CT41['C13-05'].lesson==='L13-1'&&CT41['X14-1'].lesson==='L14-6');
+ test('431 지운 정규 슬라이더를 최소값으로 복원하지 않음',()=>responseCourse41(CT41['C13-04'],{value:null,nums:['4']}).value===null&&!courseAnswered41(CT41['C13-04'],{value:null,nums:['4']}));
+ test('431 집중 슬라이더 공백과 숫자0 구분',()=>cleanResponse(BYID['TR-T2'],{value:null}).value===null&&cleanResponse(BYID['TR-T2'],{value:0}).value===0);
+ test('431 저장값 속성이 없으면 응답값을 만들어내지 않음',()=>responseCourse41(CT41['C14-02'],{nums:['1','1']}).value===null);
+ test('431 제출 전 도움을 본 연습도 다시보기 대상',()=>{const g=GUIDE_BY43['G03-1'],r=emptyGuideRecord43(g);if(guideNeedsRecord431(r))return false;r.steps[0].draft.help=true;return guideNeedsRecord431(r);});
+ test('431 해설 확인 후 관련 강의에 가도 숫자 답안 보존',()=>{const t=CT41['C03-04'],a=courseWitness41(t);CF41.task=t;CF41.response=a;CF41.result={ok:true};cpState41().records[t.id]={solved:responseCourse41(t,a),history:[]};const previous=JSON.stringify(cpState41().records[t.id]),back=captureCourseReturn431(),draft=cpState41().drafts[t.id];return back.task===t.id&&numsEq(draft.nums,a.nums)&&draft.assisted&&JSON.stringify(cpState41().records[t.id])===previous;});
+ test('431 지원4.3 백업 미리보기는 입력 객체를 바꾸지 않음',()=>{const raw=empty();raw.build='4.3-guided-review.1';raw.course41.notes[3]='원본 메모';const before=JSON.stringify(raw),p=preflight431(raw);return JSON.stringify(raw)===before&&p.next.course41.notes[3]==='원본 메모'&&p.next.build===BUILD;});
+ test('431 다른4.2 제작본과 알려지지 않은 버전 보류',()=>{const a=empty();a.build='4.2-c01-c15-content.1';const b=empty();b.build='unknown-build';return rejected(()=>preflight431(a))&&rejected(()=>preflight431(b));});
+ test('431 정규·안내형 저장 버전 변경 보류',()=>{const a=empty();a.course41.version=2;const b=empty();b.practice43.version=2;return rejected(()=>preflight431(a))&&rejected(()=>preflight431(b));});
+ test('431 알 수 없는 메모ID·길이 초과 원고를 버리지 않고 보류',()=>{const a=empty();a.course41.notes[99]='보관할 원고';const b=empty();b.course41.notes[1]='가'.repeat(50001);return rejected(()=>preflight431(a))&&rejected(()=>preflight431(b));});
+ test('431 활동 시간만 변한 상태와 실제 메모 변경 구분',()=>{const a=empty(),b=JSON.parse(JSON.stringify(a));b.activeSeconds42=60;if(comparableState431(a)!==comparableState431(b))return false;b.course41.notes[1]='새 메모';return comparableState431(a)!==comparableState431(b);});
+ function fakeStorage(initial,hook){const map=new Map(Object.entries(initial));return {getItem:k=>map.has(k)?map.get(k):null,setItem:(k,v)=>{if(hook)hook(k,v,map);map.set(k,String(v));},removeItem:k=>map.delete(k),map};}
+ test('431 교체 전 사본과 새 값의 다시 읽기: 가짜 저장소',()=>{const s=fakeStorage({key:'old'}),result=replaceStored431(s,'key','new','live','old');return result.ok&&s.getItem('key')==='new'&&JSON.parse(s.getItem('key::before-replace')).liveBefore==='live';});
+ test('431 교체 전 보관 실패이면 기존 값 유지: 가짜 저장소',()=>{const s=fakeStorage({key:'old'},k=>{if(k.endsWith('::before-replace'))throw new Error('quota');}),result=replaceStored431(s,'key','new','live','old');return !result.ok&&result.phase==='checkpoint'&&s.getItem('key')==='old';});
+ test('431 새 값 쓰기 실패이면 이전 값 유지: 가짜 저장소',()=>{const s=fakeStorage({key:'old'},(k,v)=>{if(k==='key'&&v==='new')throw new Error('write fail');}),result=replaceStored431(s,'key','new','live','old');return !result.ok&&result.rollback&&s.getItem('key')==='old';});
+ test('431 미리보기 이후 다른 저장값이면 교체 보류: 가짜 저장소',()=>{const s=fakeStorage({key:'changed'}),result=replaceStored431(s,'key','new','live','old');return !result.ok&&result.phase==='conflict'&&s.getItem('key')==='changed'&&s.getItem('key::before-replace')===null;});
+ return out;
+}

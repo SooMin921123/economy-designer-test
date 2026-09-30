@@ -1,0 +1,1 @@
+function paintTask(){const s=currentStage();if(!s||s.kind!=='task')return;if($('scene'))$('scene').innerHTML=picture(s.c,s,r,!!feedback);if($('live-note'))$('live-note').textContent=s.type==='allocation'?'현재 합계 '+r.counts.reduce((a,b)=>a+b,0)+' / 목표24 · 개인별 상한6':'현재 조건을 바꾼 장부가 그림에 반영됩니다. 목표를 만족하는 최소값이나 반례를 찾으세요.';}

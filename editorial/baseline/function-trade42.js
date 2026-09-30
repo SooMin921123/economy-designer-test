@@ -1,0 +1,1 @@
+(title,ax,ay,bx,by,q,why)=>cTask41('trade',title,'같은 총노동량·두 나라·두 재화·직선 생산 가능 곡선·거래 비용 없음. A는X, B는Y에 완전 특화한다. 정해진 X재와 교환할 Y재를 제안하고, 자급 생산과 비교한 양국의 추가 이익을 Y재 단위로 계산하세요.',{ax,ay,bx,by,q,min:0,max:by,step:0.5},null,why)

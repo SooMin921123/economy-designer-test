@@ -1,0 +1,1 @@
+function(){return '<section class="card"><h2>설명 다음의 연습</h2><p>기존72개 풀이 예제와 확인 질문에, 세 단계로 진행하는 안내형30사례와 마지막 확인 질문30개를 추가했습니다. 144개씩의 목표에는 아직 각각42개가 남아 있습니다.</p><button data-action="g43-hub">풀이 이어가기30사례</button></section>'+libraryBefore43();}

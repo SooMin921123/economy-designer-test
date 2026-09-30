@@ -1,0 +1,16 @@
+function guideTests43(){const out=[],test=(name,fn)=>{try{out.push({name,ok:!!fn()});}catch(e){out.push({name,ok:false,error:String(e.message||e)});}};
+test('G43 단원별2개·총30사례·총90단계·마지막확인30',()=>GUIDES43.length===30&&COURSE41.chapters.every(c=>GUIDES43.filter(g=>g.ch===c.id).length===2)&&GUIDES43.every(g=>g.steps.length===3&&g.steps[2].type==='pick'));
+test('G43 고유ID·강의·근거 연결',()=>new Set(GUIDES43.map(g=>g.id)).size===30&&GUIDES43.every(g=>CL41[g.lesson]&&g.refs.every(k=>CREF41[k])));
+for(const g of GUIDES43)for(const [i,s]of g.steps.entries()){test(g.id+'/'+i+' 정답 정의 적용',()=>gradeGuide43(s,s.type==='pick'?{choice:s.answer}:{nums:s.answer.map(String)}));test(g.id+'/'+i+' 빈 응답 거부',()=>!gradeGuide43(s,answer43(s)));if(s.type==='pick')test(g.id+'/'+i+' 모든 다른 선택지 거부',()=>s.options.every((_,j)=>gradeGuide43(s,{choice:j})===(j===s.answer)));else test(g.id+'/'+i+' 숫자 하나 변경 시 거부',()=>{const a=s.answer.map(String);a[0]=String(s.answer[0]+1);return !gradeGuide43(s,{nums:a});});}
+for(const [id,rows]of Object.entries(guideExpected43))for(const [index,values]of Object.entries(rows))test(id+'/'+index+' 별도 수기 기준값',()=>{const s=GUIDE_BY43[id].steps[Number(index)];return numsEq(s.answer,values)&&gradeGuide43(s,{nums:values.map(String)});});
+test('G43 분수 기약·동치 표기 허용',()=>gradeGuide43(GUIDE_BY43['G14-2'].steps[1],{nums:['6','4','4/6']})&&gradeGuide43(GUIDE_BY43['G13-2'].steps[0],{nums:['2/6','4/6']})&&!gradeGuide43(GUIDE_BY43['G13-2'].steps[0],{nums:['1/0','2/3']}));
+test('G43 양국 이익 수기식',()=>6-8*0.5===2&&8-6===2&&guideExpected43['G14-1'][1][0]===2);
+test('G43 납입 기간 독립식',()=>near(300*1.05*1.05+100*1.05,435.75)&&near(435.75-400,35.75));
+test('G43 연습JSON·메모·초회노출 보존',()=>{const x=empty(),g=GUIDE_BY43['G03-1'],r=emptyGuideRecord43(g);r.index=1;r.note='학생 질문 <조건>';r.star=true;r.steps[0].solved=answer43(g.steps[0],{nums:['30','28'],confidence:'sure'});r.steps[0].seen=true;r.steps[1].draft.nums=['28','40',''];x.practice43.records[g.id]=r;x.practice43.last=g.id;const y=normalize(JSON.parse(JSON.stringify(x))).practice43;return y.records[g.id].steps[0].seen&&y.records[g.id].steps[0].solved&&y.records[g.id].steps[1].draft.nums[0]==='28'&&y.records[g.id].note===r.note&&y.records[g.id].star;});
+test('G43 잘못된 완료 답안 복원 거부',()=>{const g=GUIDE_BY43['G03-1'],r=emptyGuideRecord43(g);r.steps[0].solved={nums:['0','0']};return normalizeGuideRecord43(g,r).steps[0].solved===null;});
+test('G43 프로젝트 공백·미확인 완료 제거',()=>{const x=empty();x.projects42.P1={text:' ',checks:[true,true,true],saved:true};x.projects42.P2={text:'초안',checks:[true,false,true],saved:true};const y=normalize(x);return !y.projects42.P1.saved&&!y.projects42.P2.saved;});
+test('G43 강의 범위 밖 선택값 제거',()=>{const x=empty();x.course41.checks['L03-2']={choice:999,ok:true};return !normalize(x).course41.checks['L03-2'];});
+test('G43 기존 정답만 있어도 노출 보존',()=>{const x=empty();x.course41.records['C03-04']={solved:courseWitness41(CT41['C03-04']),history:[]};return normalize(x).course41.exposed['C03-04']===true;});
+test('G43 선택 활동량이 외부효과 실험 표시를 변경',()=>{const a=labResult42(4,{tax:14,q:2}),b=labResult42(4,{tax:14,q:3});return a.title!==b.title&&a.detail.includes('32')&&a.detail.includes('48');});
+test('G43 새 저장공간·구형 기록 무수정',()=>STORE==='econverse431-guarded'&&normalize(empty()).practice43.version===1);
+return out;}

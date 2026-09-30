@@ -1,0 +1,1 @@
+function(raw){const x=normalizeBase43(raw);if(raw?.practice43?.version===1){for(const g of GUIDES43){if(raw.practice43.records?.[g.id])x.practice43.records[g.id]=normalizeGuideRecord43(g,raw.practice43.records[g.id]);}x.practice43.last=GUIDE_BY43[raw.practice43.last]?raw.practice43.last:null;}return x;}

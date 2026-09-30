@@ -1,0 +1,1 @@
+function orderCourse41(n,key){const a=Array.from({length:n},(_,i)=>i);let seed=Array.from(key).reduce((v,c)=>(Math.imul(v,31)+c.charCodeAt(0))>>>0,1729);for(let i=n-1;i>0;i--){seed=(Math.imul(seed,1664525)+1013904223)>>>0;const j=seed%(i+1);[a[i],a[j]]=[a[j],a[i]];}if(n>1&&a.every((v,i)=>v===i))a.push(a.shift());return a;}

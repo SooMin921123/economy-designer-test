@@ -1,0 +1,1 @@
+function(id){let html=earlierTaskPage42(id);const t=CT41[id];if(t?.campaign)html='<div class="narrow"><button class="small" data-action="v42-campaign" data-id="'+t.campaign+'">← 이 종합 사건의 전체 단계</button></div>'+html;return html;}

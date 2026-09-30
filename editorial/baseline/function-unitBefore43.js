@@ -1,0 +1,1 @@
+function(id){const base=unitBefore72(id);if(Number(id)===0)return base;const extra=SUPPLEMENTS42.filter(l=>l.ch===Number(id));return base+(extra.length?'<div class="narrow"><h2 class="section">조건을 바꿔 이해하는 심화 강의</h2><p class="smalltext muted">기본 경로의3강과 별도로 읽습니다. 단순 읽음은 독립 문제 해결의 증거로 사용하지 않습니다.</p><div class="stack">'+extra.map(lessonCard72).join('')+'</div></div>':'');}

@@ -1,0 +1,1 @@
+function guideNeedsRecord431(record){return !!record.star||record.steps.some(step=>{if(step.draft?.help)return true;const last=step.history?.[step.history.length-1];return !!last&&(!last.ok||last.answer.help||last.answer.confidence!=='sure');});}

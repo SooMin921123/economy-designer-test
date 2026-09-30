@@ -1,0 +1,1 @@
+function(id){const list=GUIDES43.filter(g=>g.ch===Number(id));return unitBefore43(id)+(list.length?'<div class="narrow"><h2 class="section">배운 풀이를 이어서 완성하기</h2><p>두 개의 창작 상황을 세 단계로 연습합니다. 정규 문제의 독립 응답과는 구분해 기록합니다.</p><div class="stack">'+list.map(guideCards43).join('')+'</div></div>':'');}

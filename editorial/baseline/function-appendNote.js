@@ -1,0 +1,1 @@
+function(c,text){if(!CASES.some(x=>x.id===c))return false;const combined=((state.notes[c]||'')+'\n\n'+String(text)).trim();if(combined.length>30000){toast('메모 한도에 도달했습니다. 기존 메모는 보존했습니다. 내보내기 후 정리해 주세요.');return false;}state.notes[c]=combined;save();toast('기존 메모를 보존하며 뒤에 추가했습니다.');return true;}

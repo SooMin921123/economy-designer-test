@@ -1,0 +1,1 @@
+function go(view,id){stash();route={view,id:id||null};r=null;feedback=null;lessonSteps=0;lessonDepth='basic';if(view==='stage'){const s=BYID[id];if(!s){route={view:'home',id:null};}else{state.last=id;if(s.kind==='task')r=cleanResponse(s,state.drafts[id]||(s.type==='write'?state.records[id]?.solved:null));save();}}render();window.scrollTo({top:0,behavior:'auto'});}

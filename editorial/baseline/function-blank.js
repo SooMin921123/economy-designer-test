@@ -1,0 +1,1 @@
+function blank(s){return {choice:null,selected:[],map:s?.type==='map'?s.data.rows.map(()=>null):[],chosen:null,sacrifice:null,nums:Array(s?.type==='numbers'?s.data.labels.length:s?.type==='trade'?2:1).fill(''),value:s?.data?.min??0,donation:null,counts:[0,0,0,0],text:'',checks:s?.type==='write'?s.data.checks.map(()=>false):[],confidence:'',assisted:false,help:false};}

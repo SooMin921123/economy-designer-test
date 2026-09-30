@@ -1,0 +1,1 @@
+function next(){const s=currentStage();if(!s)return;const c=CASES.find(c=>c.id===s.c);if(s.index+1<c.stageIds.length)go('stage',c.stageIds[s.index+1]);else{go('case',c.id);if(complete(c))toast('사건 완료 · '+c.badge);}}

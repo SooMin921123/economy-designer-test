@@ -1,0 +1,1 @@
+function(from=null){const obj=from||CF41.task||CF41.lesson;if(obj?.supplement&&!CF41.returnTo){const list=SUPPLEMENTS42.filter(l=>l.ch===obj.ch).sort((a,b)=>a.no-b.no),idx=list.findIndex(l=>l.id===obj.id);if(idx>=0&&idx+1<list.length)courseGo41('course-lesson',list[idx+1].id);else courseGo41('course-unit',String(obj.ch===0?1:obj.ch));return;}return nextBefore72(from);}

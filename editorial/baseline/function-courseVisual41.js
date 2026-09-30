@@ -1,0 +1,1 @@
+function(t,a,reveal){if(['ppf','trade','external'].includes(t.type)&&!Number.isFinite(num(a?.value)))return '<p class="notice">조건 값이 비어 있습니다. 화면에서 보이는 슬라이더 위치를 새 답으로 저장하지 않습니다. 값을 입력하거나 조절해 주세요.</p>';return visualBefore431(t,a,reveal);}

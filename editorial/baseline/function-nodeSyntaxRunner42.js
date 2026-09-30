@@ -1,0 +1,14 @@
+function nodeSyntaxRunner42(){return [
+"// Node.js 내장 모듈만 사용하는 HTML JavaScript 구문 검사. 게임을 실행하지 않습니다.",
+"import fs from 'node:fs';",
+"import vm from 'node:vm';",
+"const path=process.argv[2];",
+"if(!path){console.error('사용: node syntax-check.mjs index.html');process.exit(2);}",
+"const html=fs.readFileSync(path,'utf8');",
+"const scripts=[...html.matchAll(/<script\\b[^>]*>([\\s\\S]*?)<\\/script\\s*>/gi)];",
+"const results=scripts.map((m,i)=>{try{new vm.Script(m[1],{filename:path+':script'+(i+1)});return {script:i+1,syntax:'PASS'};}catch(e){return {script:i+1,syntax:'FAIL',message:e.message,stack:e.stack};}});",
+"const report={scope:'구문 검사만 수행. 화면·채점·저장·오프라인 검사는 별도',at:new Date().toISOString(),file:path,results};",
+"fs.writeFileSync('syntax-result.json',JSON.stringify(report,null,2));",
+"console.log(JSON.stringify(report,null,2));",
+"if(!scripts.length||results.some(x=>x.syntax==='FAIL'))process.exitCode=1;"
+].join('\n');}

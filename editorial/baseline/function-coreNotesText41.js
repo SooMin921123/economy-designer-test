@@ -1,0 +1,1 @@
+function notesText(){return '경제 설계자 4.3 — 사용자 학습 메모\n출간 검토 완료가 아닌 초안\n\n'+CASES.map(c=>c.n+'. '+c.title+'\n\n[메모]\n'+(state.notes[c.id]||'(미작성)')+'\n\n[설명 활동]\n'+(state.records[c.stageIds[c.stageIds.length-1]]?.solved?.text||'(미작성)')).join('\n\n---\n\n');}

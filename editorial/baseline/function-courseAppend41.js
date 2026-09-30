@@ -1,0 +1,1 @@
+function courseAppend41(ch,text){const old=cpState41().notes[ch]||'',next=(old+'\n\n'+text).trim();if(next.length>50000){toast('메모 한도에 도달했습니다. 기존 메모를 보존했습니다. 먼저 내보내 주세요.');return;}cpState41().notes[ch]=next;save();toast('단원 메모 뒤에 추가했습니다.');}

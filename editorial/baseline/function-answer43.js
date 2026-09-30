@@ -1,0 +1,1 @@
+function answer43(step,raw){const x=raw&&typeof raw==='object'?raw:{};return {choice:Number.isInteger(x.choice)&&x.choice>=0&&x.choice<(step.options?.length||0)?x.choice:null,nums:step.type==='num'?step.labels.map((_,i)=>cleanText43(x.nums?.[i])):[],confidence:['sure','unsure','guess'].includes(x.confidence)?x.confidence:'',help:x.help===true};}

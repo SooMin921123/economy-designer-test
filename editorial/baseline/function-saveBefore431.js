@@ -1,0 +1,1 @@
+function save(){if(!storeOK)return false;try{localStorage.setItem(STORE,JSON.stringify(state));return true;}catch(e){storeOK=false;showWarning('브라우저 저장이 제한되었습니다. 종료 전에 JSON 백업을 저장하세요.');return false;}}

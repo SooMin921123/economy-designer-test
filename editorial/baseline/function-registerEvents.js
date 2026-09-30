@@ -1,0 +1,1 @@
+function(){eventsBefore431();document.addEventListener('change',event=>{if(event.target.hasAttribute('data-restoreconfirm431')&&RESTORE431){RESTORE431.confirmed=event.target.checked;const apply=document.querySelector('[data-action="s431-apply"]');if(apply)apply.disabled=!RESTORE431.confirmed;}});}

@@ -1,0 +1,1 @@
+function captureCourseReturn431(){const t=CF41.task,a=CF41.response;if(!t||!a)return null;const copy=responseCourse41(t,a);copy.assisted=true;copy.mode='assisted';cpState41().drafts[t.id]=copy;cpState41().exposed[t.id]=true;CF41.response=copy;CF41.result=null;CF41.returnTo=t.id;return {task:t.id,lesson:t.lesson};}

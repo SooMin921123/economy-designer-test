@@ -1,0 +1,1 @@
+async function(b){if(b.dataset.action==='c41-export-data'){download(JSON.stringify({content:COURSE41,references:CREF41,campaigns:CAMPAIGNS42,projects:PROJECTS42,workshops:WORKSHOPS42},null,2),'경제설계자4_2_전체콘텐츠.json','application/json;charset=utf-8');return;}return dataExportHandler42(b);}

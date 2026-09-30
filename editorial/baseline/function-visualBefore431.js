@@ -1,0 +1,1 @@
+function(t,a,reveal){if(t.type==='ppf')return '<div class="play-scene">'+ppfPicture(t.d,num(a.value),num(a.nums[0]),reveal)+'</div>';if(t.type==='trade')return tradeVisual42(t.d,num(a.value),reveal);return oldVisual42(t,a,reveal);}

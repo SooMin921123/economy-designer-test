@@ -1,0 +1,1 @@
+function(s,raw){const x=coreClean41(s,raw);x.assisted=x.assisted||x.help;x.mode=['first','assisted','recheck','legacy','draft'].includes(raw?.mode)?raw.mode:'legacy';if(x.assisted&&s.type!=='write')x.mode='assisted';return x;}

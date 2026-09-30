@@ -1,0 +1,1 @@
+function applySettings(){document.documentElement.style.setProperty('--font',state.settings.size+'px');document.body.style.fontSize=state.settings.size+'px';document.body.classList.toggle('reduced',state.settings.reduced);}

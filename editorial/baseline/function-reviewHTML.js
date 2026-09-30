@@ -1,0 +1,1 @@
+function(){return '<section class="card"><h2>안내형 연습의 다시 보기</h2><p>최근 오답, 낮은 확신도, 도움 사용, 직접 지정한 책갈피를 따로 모았습니다. 같은 사례의 재확인과 새로운 자료의 독립 풀이는 구분합니다.</p><button data-action="g43-review">다시 볼 풀이 '+GUIDES43.filter(needsGuide43).length+'개</button></section>'+reviewBefore43();}

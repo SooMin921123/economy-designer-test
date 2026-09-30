@@ -1,0 +1,1 @@
+function courseInvalidate41(){if(CF41.result){CF41.result=null;if($('c41feedback'))$('c41feedback').innerHTML='';}if(CF41.task&&CF41.response){CF41.response.mode=courseMode41(CF41.task,CF41.response);if($('c41mode'))$('c41mode').textContent=modeLabel41(CF41.response.mode);}}

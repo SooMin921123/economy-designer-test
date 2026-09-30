@@ -1,0 +1,1 @@
+function(){return '<section class="card"><h2>여섯 제작 프로젝트</h2><p>자기 설명, 문항 만들기, 금융 설명서 교정, 종합 강의 초안을 작성합니다.</p><div class="actions"><button class="primary" data-action="v42-projects">제작 프로젝트 열기</button><button data-action="v42-export-all">모든 메모·초안 TXT</button></div></section>'+earlierStudio42().replaceAll('01~07','01~15').replaceAll('21강','45강');}

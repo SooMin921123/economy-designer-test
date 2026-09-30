@@ -1,0 +1,1 @@
+function allNotes42(){return notesText()+'\n\n'+courseNotesText41().replaceAll('01~07','01~15')+'\n\n[제작 프로젝트]\n'+PROJECTS42.map(p=>p.id+' '+p.title+'\n'+(state.projects42[p.id]?.text||'(미작성)')).join('\n\n');}

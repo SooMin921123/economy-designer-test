@@ -1,0 +1,1 @@
+function courseNotesText41(){return '경제 설계자4.3 — 정규 과정01~07 집필 메모\n학습용 초안이며 정확성·출간 검토는 별도입니다.\n\n'+COURSE41.chapters.map(ch=>ch.id+'. '+ch.title+'\n'+(cpState41().notes[ch.id]||'(미작성)')).join('\n\n---\n\n');}

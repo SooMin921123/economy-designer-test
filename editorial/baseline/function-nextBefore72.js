@@ -1,0 +1,1 @@
+function(from=null){const obj=from||CF41.task||CF41.lesson;if(!CF41.returnTo&&obj?.campaign){const c=CAMPAIGNS42.find(c=>c.id===obj.campaign),idx=c.tasks.indexOf(obj.id),next=c.tasks[idx+1];if(next)courseGo41('course-task',next);else courseGo41('course-campaign',String(c.id));return;}oldNext42(from);}

@@ -1,0 +1,17 @@
+function(){const out=auditBefore42();const test=(name,fn)=>{try{out.push({name,ok:!!fn()});}catch(error){out.push({name,ok:false,error:error.message});}};
+for(const [key,values]of Object.entries(COURSE_RUNTIME_EXPECTATIONS42)){const m=key.match(/^(C\d{2}|X\d{2})_(\d+)$/),id=m[1]+'-'+(m[1][0]==='C'?m[2].padStart(2,'0'):m[2]);test('V42 수치 기준 '+id,()=>courseGrade41(CT41[id],{nums:values.map(String)}));}
+test('V42 생산판12·6에서X4→Y4',()=>courseGrade41(CT41['C13-04'],{value:4,nums:['4']})&&!courseGrade41(CT41['C13-04'],{value:4,nums:['6']}));
+test('V42 교환X4:Y3의 양국이익1·1',()=>courseGrade41(CT41['C14-02'],{value:3,nums:['1','1']}));
+test('V42 교환 경계Y2·Y4 제외',()=>!courseGrade41(CT41['C14-02'],{value:2,nums:['0','2']})&&!courseGrade41(CT41['C14-02'],{value:4,nums:['2','0']}));
+test('V42 생산량 초과·간격 위반 교환 제외',()=>!courseGrade41(CT41['C14-02'],{value:5,nums:['3','-1']})&&!courseGrade41(CT41['C14-02'],{value:3.25,nums:['1.25','0.75']}));
+test('V42 새 조건 교환X2:Y4 양국이익2·2',()=>courseGrade41(CT41['C14-06'],{value:4,nums:['2','2']}));
+test('V42 여러 자산조합의 정답 허용',()=>courseGrade41(CT41['C09-03'],{counts:[3,4,3]})&&courseGrade41(CT41['C09-03'],{counts:[10,0,0]})&&!courseGrade41(CT41['C09-03'],{counts:[2,4,4]}));
+test('V42 여섯 종합 사건과 여섯 프로젝트',()=>CAMPAIGNS42.length===6&&CAMPAIGNS42.every(c=>c.tasks.length===4&&c.tasks.every(id=>CT41[id]?.campaign===c.id))&&PROJECTS42.length===6);
+test('V4212실험 기본값 계산 구조',()=>WORKSHOPS42.length===12&&WORKSHOPS42.every(l=>{const z=labResult42(l.id,Object.fromEntries(l.fields.map(f=>[f.key,f.value])));return z.title&&z.headers.length&&z.rows.length;}));
+test('V42 현금달력 초기1000의 필요값',()=>labResult42(1,{initial:0,month:6,receipt:1200,expense:200}).rows[4][3]===-1000&&labResult42(1,{initial:1000,month:6,receipt:1200,expense:200}).rows.every(row=>row[3]>=0));
+test('V42 이자 실험 독립 기준120·121',()=>{const z=labResult42(7,{principal:100,rate:10,years:2});return near(z.rows[2][1],120)&&near(z.rows[2][2],121);});
+test('V42 납입시점 실험 독립 기준364.1',()=>{const z=labResult42(8,{first:100,second:100,third:100,rate:10});return near(z.rows.reduce((s,row)=>s+row[3],0),364.1);});
+test('V42 실험 범위밖생산 처리',()=>!labResult42(11,{xmax:12,ymax:6,x:13}).ppf);
+test('V42 전 범위 기록·프로젝트 JSON 왕복',()=>{const x=empty();x.course41.notes[15]='무역의 근거 <검토>';x.projects42.P6={text:'통합 원고',checks:[true,false,true],saved:false};x.course41.records['C14-02']={solved:responseCourse41(CT41['C14-02'],{value:3,nums:['1','1']}),history:[]};const y=normalize(JSON.parse(JSON.stringify(x)));return y.projects42.P6.text==='통합 원고'&&y.course41.notes[15]===x.course41.notes[15]&&y.course41.records['C14-02'].solved!==null;});
+test('V42 저장 공간이4.1과 분리',()=>STORE!=='econverse41-integrated');
+return out;}

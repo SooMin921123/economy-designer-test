@@ -1,0 +1,1 @@
+function mode41(s,response,st=state){if(s.type==='write')return 'draft';if(response.assisted||response.help)return 'assisted';if(st.exposure?.[s.id]||st.records[s.id]?.history?.length||st.records[s.id]?.solved)return 'recheck';return 'first';}

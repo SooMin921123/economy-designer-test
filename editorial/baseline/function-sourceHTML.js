@@ -1,0 +1,1 @@
+function(pwa=true){const html=sourceBefore43(pwa),boot=$('boot-check42');return html.replace('경제 설계자4.3 첫 세 사건','경제72강·15단원·풀이이어가기30사례').replace('<body>','<body>'+(boot?'<scr'+'ipt id="boot-check42">'+boot.textContent+'<'+'/script>':''));}

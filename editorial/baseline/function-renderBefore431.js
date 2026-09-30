@@ -1,0 +1,1 @@
+function(){if(['course-guides','course-guided-review','course-guide'].includes(route.view)){frame();CF41.task=null;CF41.response=null;CF41.result=null;$('app').innerHTML=route.view==='course-guide'?guidePage43(route.id):guideHub43(route.view==='course-guided-review');}else renderBefore43();}

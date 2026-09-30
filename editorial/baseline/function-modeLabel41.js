@@ -1,0 +1,1 @@
+function modeLabel41(value){return ({first:'초회 응답 · 이 문항 해설 미열람',assisted:'강의·풀이 도움을 사용한 응답',recheck:'같은 문항 재확인 · 새 문항의 독립 해결 아님',legacy:'이전 버전 기록 · 초회 여부 미확인',draft:'설명 초안 · 내용의 정확성은 별도 검토'})[value]||'이전 버전 기록 · 초회 여부 미확인';}

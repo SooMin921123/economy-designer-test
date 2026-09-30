@@ -1,0 +1,1 @@
+function(t,a){const exact={'C06-03':'PG-T3','C06-04':'PG-T4'},old=exact[t.id];if(!a.assisted&&!a.help&&old&&(state.exposure?.[old]||state.records?.[old]?.history?.length))return 'recheck';return prevCourseMode42(t,a);}
