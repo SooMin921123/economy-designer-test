@@ -1,0 +1,54 @@
+name: Korean Editorial Revision
+on:
+  push:
+    branches: ['editorial/korean-4.3.1']
+    paths: ['editorial/run.txt', '.github/workflows/editorial.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: korean-editorial-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  editorial:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: editorial/korean-4.3.1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install browser tools
+        run: |
+          npm install
+          npm install --no-save acorn
+          npx playwright install --with-deps chromium
+      - name: Extract effective baseline
+        run: node editorial/extract.mjs
+      - name: Apply editorial manuscript and run verification
+        run: |
+          if test -f editorial/build.mjs; then node editorial/build.mjs; fi
+          if test -f editorial/verify.mjs; then node editorial/verify.mjs; fi
+      - name: Save generated manuscript and evidence to work branch
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add editorial/baseline editorial/output source/economy-designer-4.3.1.html 2>/dev/null || git add editorial/baseline
+          if ! git diff --cached --quiet; then
+            git commit -m 'build(editorial): generated content and verification evidence [skip ci]'
+            git pull --rebase origin editorial/korean-4.3.1
+            git push origin HEAD:editorial/korean-4.3.1
+          fi
+      - name: Upload revision bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: economy-korean-revision-${{ github.run_id }}
+          path: |
+            editorial/output/
+          if-no-files-found: ignore
+          retention-days: 30
