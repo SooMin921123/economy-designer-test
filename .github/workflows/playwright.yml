@@ -6,6 +6,8 @@ on:
     paths:
       - 'source/**'
       - 'reference/**'
+      - 'editorial/**'
+      - 'revised/**'
       - 'tests/**'
       - 'scripts/**'
       - 'package*.json'
@@ -25,7 +27,7 @@ concurrency:
 jobs:
   browser-regression:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -35,24 +37,26 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Verify preserved original and permitted runtime edits
+      - name: Verify preserved original and baseline recovery edits
         run: node scripts/verify-source.mjs
-      - name: Install test dependencies
-        run: npm install
+      - name: Install dependencies and compile the Korean edition
+        run: npm ci
       - name: Record dependency versions
         run: |
           mkdir -p evidence
-          npm ls @playwright/test > evidence/dependencies.txt
+          npm ls @playwright/test acorn > evidence/dependencies.txt
           cp package-lock.json evidence/dependency-lock.json
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
-      - name: Run Playwright regression suite
+      - name: Run all Playwright regressions
         run: |
           set -o pipefail
           npm run test:e2e 2>&1 | tee evidence/playwright.log
       - name: Summarize actual results
         if: always()
-        run: node scripts/summarize-results.mjs
+        run: |
+          node scripts/summarize-results.mjs
+          if [ -f evidence/results.json ]; then node editorial/summarize-tests.mjs; fi
       - name: Upload evidence on success or failure
         if: always()
         uses: actions/upload-artifact@v4
@@ -60,6 +64,8 @@ jobs:
           name: economy431-evidence-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             evidence/
+            editorial/reports/build.json
+            editorial/reports/regressions.json
             playwright-report/
             test-results/
           retention-days: 30
