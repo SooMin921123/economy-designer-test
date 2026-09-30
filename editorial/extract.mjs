@@ -10,8 +10,8 @@ function walk(n){if(!n || typeof n!=='object')return;if(n.type==='Literal'&&type
 walk(ast);
 const browser=await chromium.launch();const context=await browser.newContext();const page=await context.newPage();
 await page.goto('http://127.0.0.1:4173/source/economy-designer-4.3.1.html');
-const names=[...js.matchAll(/\b(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=/g)].map(m=>m[1]).filter(n=>/^(COURSE41|CL41|CT41|CU41|LESSONS|STAGES|CASES|CAST|WORKSHOPS42|CAMPAIGNS42|PROJECTS42|GUIDE|G[UL]|FOUNDATION)/.test(n));
-const values=await page.evaluate(names=>Object.fromEntries([...new Set(names)].map(name=>{try{return[name,JSON.parse(JSON.stringify((0,eval)(name)))];}catch{return[name,null];}})),names);
+const names=['CAST','CASES','LESSONS','STAGES','COURSE41','CL41','CT41','CU41','CAMPAIGNS42','PROJECTS42','WORKSHOPS42','GUIDES43','GUIDE_BY43'];
+const values=await page.evaluate(names=>Object.fromEntries(names.map(name=>{try{return[name,JSON.parse(JSON.stringify((0,eval)(name)))];}catch{return[name,null];}})),names);
 await context.close();await browser.close();
 await fs.mkdir('editorial/catalog',{recursive:true});
 await fs.writeFile('editorial/catalog/runtime.json',JSON.stringify(values,null,2));
