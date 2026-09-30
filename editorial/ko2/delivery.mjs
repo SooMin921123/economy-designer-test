@@ -1,0 +1,30 @@
+import fs from 'node:fs/promises';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+const read=async p=>JSON.parse(await fs.readFile(p,'utf8'));
+const tests=await read('editorial/reports/regressions.json');
+const audit=await read('editorial/ko2/reports/render-audit.json');
+const coverage=await read('editorial/ko2/reports/coverage.json');
+const data=await read('editorial/ko2/reports/expected-runtime.json');
+const build=await read('editorial/reports/build.json');
+assert(tests.passed&&audit.passed);assert.equal(build.edition,'ko-2');
+await fs.rename('delivery/economy-designer-4.3.1-ko.html','delivery/economy-designer-4.3.1-ko2.html');
+await fs.rename('delivery/economy-designer-4.3.1-ko-pwa.zip','delivery/economy-designer-4.3.1-ko2-pwa.zip');
+await fs.copyFile('editorial/ko2/reports/문장_변경전후_대조표.html','delivery/문장_변경전후_대조표.html');
+const lessons=Object.values(data.CL41).sort((a,b)=>a.ch-b.ch||a.no-b.no);
+let manuscript='# 경제 설계자 4.3.1 — 문장 개정 2차 원고\n\n학생용 본문과 예제를 검토하기 위한 원고입니다. 강의 식별자는 대조 편의를 위해 표시했습니다.\n\n';
+for(const l of lessons){manuscript+=`## ${l.id} ${l.title}\n\n${l.goal}\n\n`;
+ for(let i=0;i<l.paragraphs.length;i++)manuscript+=`### ${l.headings[i]}\n\n${l.paragraphs[i]}\n\n`;
+ manuscript+=`### 예제\n\n${l.example}\n\n### 풀이\n\n${l.steps.map((s,i)=>(i+1)+'. '+s).join('\n\n')}\n\n${l.result}\n\n### 핵심 정리\n\n${l.tip}\n\n`;
+ if(l.caution)manuscript+=`### 유의 사항\n\n${l.caution}\n\n`;
+ manuscript+=`### 확인 문제\n\n${l.check.q}\n\n${l.check.o.map((s,i)=>(i+1)+'. '+s).join('\n')}\n\n정답: ${l.check.a+1}\n\n${l.check.why}\n\n---\n\n`;
+}
+await fs.writeFile('delivery/72강_개정원고.md',manuscript);
+const result={edition:'ko-2',status:'review-branch-only',runId:tests.runId,commit:tests.commit,coverage,renderAudit:audit,tests,build};
+await fs.writeFile('delivery/ko2-validation.json',JSON.stringify(result,null,2));
+const readme=`# 경제 설계자 4.3.1 · 문장 개정 2차\n\n## 여는 파일\n\neconomy-designer-4.3.1-ko2.html: 수정된 학습 앱입니다. JavaScript를 실행할 수 있는 브라우저에서 여세요. 파일 경로·브라우저가 달라지면 기존 기록이 자동으로 옮겨지지 않을 수 있습니다.\n\n문장_변경전후_대조표.html: 기존 개정판(ko-1)과 이번 원고를 나란히 비교합니다.\n\n72강_개정원고.md: 전체 강의 본문·예제·풀이·확인 문제입니다.\n\neconomy-designer-4.3.1-ko2-pwa.zip: HTTPS 정적 호스팅용 앱 묶음입니다. 개인 백업과 원교재 PDF·HWP·발췌 자료는 들어 있지 않습니다.\n\n## 실제 검사 결과\n\nActions 실행 ${tests.runId}, 검사 커밋 ${tests.commit}. ${tests.tests.length}개 브라우저 검사 통과. 72강·216개 탭을 열어 실제 표시 문장과 개정 원고의 일치 여부를 별도로 확인했습니다.\n\n문체는 사용자 승인 예시를 기준으로 고쳤습니다. 브라우저 테스트 통과가 문체나 교과 내용의 출간 승인을 뜻하는 것은 아닙니다. 실제 iPhone·Android 기기 설치는 이번 검사에 포함하지 않았습니다.\n\n## 반영 상태\n\n작업 브랜치: editorial/ko-2. 현재 공개 사이트는 바꾸지 않았습니다. 이 파일은 사용자 검토용 개정판입니다.\n\n원본 HTML과 검증 기준본은 그대로 보존했습니다. 저장 키는 econverse431-guarded이며, 사용자 개인 기록에는 접근하지 않았습니다. 다른 파일이나 주소로 옮기기 전에는 기존 앱에서 백업 파일을 받아 두세요.\n\n기준 커밋: ${coverage.base}\n개정 HTML SHA-256: ${build.revisedSHA256}\n\n수정한 항목과 실제 검사 결과는 ko2-validation.json과 대조표를 참조하세요.\n`;
+await fs.writeFile('delivery/README-ko.md',readme);
+const sums=[];for(const n of (await fs.readdir('delivery')).sort()){if(n==='SHA256SUMS.txt')continue;sums.push(createHash('sha256').update(await fs.readFile('delivery/'+n)).digest('hex')+'  '+n);}
+await fs.writeFile('delivery/SHA256SUMS.txt',sums.join('\n')+'\n');
+await fs.writeFile('editorial/ko2/reports/DELIVERY.md',readme);
+console.log('KO2_DELIVERY_READY '+JSON.stringify({runId:tests.runId,tests:tests.tests.length,renderedLessons:72,sha256:build.revisedSHA256}));
