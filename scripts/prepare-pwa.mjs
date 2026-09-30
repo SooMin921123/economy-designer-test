@@ -3,7 +3,7 @@ import path from 'node:path';
 import { deflateSync } from 'node:zlib';
 
 const ROOT = process.cwd();
-const SOURCE = path.join(ROOT, 'source', 'economy-designer-4.3.1.html');
+const SOURCE = path.join(ROOT, 'revised', 'economy-designer-4.3.1-ko.html');
 const OUT = path.join(ROOT, 'public');
 
 const html = await fs.readFile(SOURCE, 'utf8');
@@ -30,9 +30,9 @@ await fs.writeFile(path.join(OUT, 'sw.js'), swMatch[1], 'utf8');
 
 const manifest = {
   id: './',
-  name: '경제 설계자 4.3 · 도시의 두 번째 장부',
+  name: '경제 설계자 4.3.1 · 문장 개정판',
   short_name: '경제 설계자',
-  description: '개념 강의와 시각적 퍼즐로 배우는 첫 세 경제 사건',
+  description: '경제 개념 72강과 단계별 풀이, 연습 문제로 공부하는 경제 학습실',
   lang: 'ko',
   start_url: './index.html',
   scope: './',

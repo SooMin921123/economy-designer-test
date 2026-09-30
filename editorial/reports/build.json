@@ -2,9 +2,10 @@
   "edition": "ko-1",
   "baseline": "9cca53cd0691571f0748c4d2b85f21442b105dd4",
   "baselineSHA256": "7e634b816ed143e752569bc9ddc509d2d026e92cad08939952998e2d23072706",
-  "revisedSHA256": "ac35c6b9384e6d217b4ea6229534887c7ce04ee2c7d0e948b487980d31749615",
+  "revisedSHA256": "e3675e3f4cf654361247aec1240516d14925c9d8a4f7aed62b74b3571a7ef410",
   "textFieldChanges": 2933,
-  "literalChanges": 3117,
+  "literalChanges": 3212,
+  "templateTextChanges": 27,
   "headingsRendererReplacements": 1,
   "objects": {
     "CT41": 219,
@@ -19,7 +20,7 @@
     "CU41": 16,
     "WORKSHOPS42": 12
   },
-  "executableASTOutsidePresentationChange": "identical after masking string literals",
+  "executableASTOutsidePresentationChange": "identical after masking string and template text; template expressions preserved",
   "presentationOverrides": [
     "homeHTML",
     "releaseHTML42",

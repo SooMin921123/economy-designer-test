@@ -224,7 +224,7 @@ with zipfile.ZipFile(sys.argv[1]) as z:
   const assets = ['index.html', 'manifest.webmanifest', 'sw.js', 'icon-192.png', 'icon-512.png', 'icon-180.png'];
   for (const name of assets) expect(names).toContain(name);
   const scriptOf = html => html.match(/<script id="app-code">([\s\S]*?)<\/script>/)[1].replace(/\r\n/g, '\n');
-  expect(scriptOf(await fs.readFile(path.join(unpacked, 'index.html'), 'utf8'))).toBe(scriptOf(await fs.readFile('source/economy-designer-4.3.1.html', 'utf8')));
+  expect(scriptOf(await fs.readFile(path.join(unpacked, 'index.html'), 'utf8'))).toBe(scriptOf(await fs.readFile('revised/economy-designer-4.3.1-ko.html', 'utf8')));
   const folder = `qa-export-${testInfo.project.name}`;
   const hosted = path.resolve('public', folder);
   await fs.mkdir(hosted, { recursive: true });

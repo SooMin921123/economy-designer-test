@@ -7,7 +7,7 @@ import { execFileSync } from 'node:child_process';
 import { chromium } from '@playwright/test';
 
 // Build from a fresh, isolated app instance. Never deploy a test's seeded state.
-const html = await fs.readFile('source/economy-designer-4.3.1.html', 'utf8');
+const html = await fs.readFile('revised/economy-designer-4.3.1-ko.html', 'utf8');
 const codeOf = text => text.match(/<script id="app-code">([\s\S]*?)<\/script>/)[1].replace(/\r\n/g, '\n');
 const sha256 = data => createHash('sha256').update(data).digest('hex');
 const commit = process.env.GITHUB_SHA || execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
@@ -79,7 +79,7 @@ await fs.writeFile('_site/sw.js', sw);
 await fs.writeFile('_site/robots.txt', 'User-agent: *\nDisallow: /\n');
 const files = {};
 for (const name of [...assets,'robots.txt']) files[name] = sha256(await fs.readFile(path.join('_site', name)));
-const metadata = { schema:'economy431-deployment-1', commit, build:'4.3.1-recovery.1', storageKey:'econverse431-guarded', runtimeSHA256:sha256(Buffer.from(html)), learningScriptSHA256:sha256(codeOf(html)), cacheVersion, files, publishedFiles:[...assets,'robots.txt','deployment.json'], sourceEdits:'Only previously verified two function-closing braces', packagingEdits:'App exporter, noindex/deployment metadata, content-versioned SW cache only', physicalDeviceValidation:'not performed' };
+const metadata = { schema:'economy431-deployment-1', commit, build:'4.3.1-recovery.1', storageKey:'econverse431-guarded', runtimeSHA256:sha256(Buffer.from(html)), learningScriptSHA256:sha256(codeOf(html)), cacheVersion, files, publishedFiles:[...assets,'robots.txt','deployment.json'], sourceEdits:'Korean wording edition ko-1; original verified source preserved; numeric data and identifiers checked separately', packagingEdits:'App exporter, noindex/deployment metadata, content-versioned SW cache only', physicalDeviceValidation:'not performed' };
 await fs.writeFile('_site/deployment.json', JSON.stringify(metadata, null, 2));
 assert.deepEqual((await fs.readdir('_site')).sort(), metadata.publishedFiles.slice().sort());
 await fs.writeFile('evidence/pages-build.json', JSON.stringify(metadata,null,2));

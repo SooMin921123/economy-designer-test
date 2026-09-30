@@ -113,7 +113,7 @@
   },
   {
     "name": "numInputs",
-    "characters": 375
+    "characters": 380
   },
   {
     "name": "rangeControl",
@@ -121,11 +121,11 @@
   },
   {
     "name": "taskControls",
-    "characters": 3612
+    "characters": 3618
   },
   {
     "name": "solutionHTML",
-    "characters": 1390
+    "characters": 1400
   },
   {
     "name": "confidenceHTML",
@@ -133,7 +133,7 @@
   },
   {
     "name": "stageHTML",
-    "characters": 538
+    "characters": 535
   },
   {
     "name": "reviewHTML",
@@ -141,15 +141,15 @@
   },
   {
     "name": "studioHTML",
-    "characters": 294
+    "characters": 289
   },
   {
     "name": "labHTML",
-    "characters": 1899
+    "characters": 1902
   },
   {
     "name": "labResultText",
-    "characters": 642
+    "characters": 643
   },
   {
     "name": "paintLab",
@@ -185,23 +185,23 @@
   },
   {
     "name": "modeLabel41",
-    "characters": 225
+    "characters": 228
   },
   {
     "name": "coreLessonHTML41",
-    "characters": 2160
+    "characters": 2147
   },
   {
     "name": "coreStageHTML41",
-    "characters": 1917
+    "characters": 1901
   },
   {
     "name": "coreCaseHTML41",
-    "characters": 1206
+    "characters": 1203
   },
   {
     "name": "coreStudioHTML41",
-    "characters": 1782
+    "characters": 1779
   },
   {
     "name": "coreHandle41",
@@ -217,15 +217,15 @@
   },
   {
     "name": "choiceBoard41",
-    "characters": 1865
+    "characters": 1868
   },
   {
     "name": "corePaintLab41",
-    "characters": 913
+    "characters": 916
   },
   {
     "name": "addLesson41",
-    "characters": 342
+    "characters": 327
   },
   {
     "name": "courseExternalLabel41",
@@ -233,7 +233,7 @@
   },
   {
     "name": "courseButton41",
-    "characters": 421
+    "characters": 425
   },
   {
     "name": "courseNumbers41",
@@ -269,7 +269,7 @@
   },
   {
     "name": "priorHandler42",
-    "characters": 2050
+    "characters": 2052
   },
   {
     "name": "previousFrame42",
@@ -285,7 +285,7 @@
   },
   {
     "name": "previousStudio42",
-    "characters": 654
+    "characters": 655
   },
   {
     "name": "previousSettings42",
@@ -301,7 +301,7 @@
   },
   {
     "name": "oldSolution42",
-    "characters": 1226
+    "characters": 1234
   },
   {
     "name": "oldVisual42",
@@ -309,7 +309,7 @@
   },
   {
     "name": "oldHint42",
-    "characters": 679
+    "characters": 796
   },
   {
     "name": "tradeVisual42",
@@ -317,7 +317,7 @@
   },
   {
     "name": "projectHub42",
-    "characters": 465
+    "characters": 468
   },
   {
     "name": "paintWorkshop42",
@@ -333,7 +333,7 @@
   },
   {
     "name": "earlierStudio42",
-    "characters": 652
+    "characters": 649
   },
   {
     "name": "earlierReview42",
@@ -353,7 +353,7 @@
   },
   {
     "name": "earlierTaskPage42",
-    "characters": 2255
+    "characters": 2260
   },
   {
     "name": "allNotes42",
@@ -369,7 +369,7 @@
   },
   {
     "name": "rationalSolution42",
-    "characters": 579
+    "characters": 593
   },
   {
     "name": "nodeSyntaxRunner42",
@@ -393,7 +393,7 @@
   },
   {
     "name": "hubBefore72",
-    "characters": 932
+    "characters": 937
   },
   {
     "name": "homeBefore72",
@@ -401,7 +401,7 @@
   },
   {
     "name": "studioBefore72",
-    "characters": 359
+    "characters": 362
   },
   {
     "name": "settingsBefore72",
@@ -433,7 +433,7 @@
   },
   {
     "name": "labBefore43",
-    "characters": 4088
+    "characters": 4572
   },
   {
     "name": "sourceBefore43",
@@ -449,7 +449,7 @@
   },
   {
     "name": "lessonBefore43",
-    "characters": 2676
+    "characters": 2688
   },
   {
     "name": "libraryBefore43",
