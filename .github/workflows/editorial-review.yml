@@ -43,7 +43,7 @@ jobs:
       - name: Verify baseline and compile Korean edition
         run: |
           node scripts/verify-source.mjs
-          node editorial/build.mjs
+          node editorial/debug-build.mjs
       - name: Check runtime data and collect active interface text
         run: |
           python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/editorial-server.log 2>&1 &
