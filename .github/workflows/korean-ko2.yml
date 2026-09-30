@@ -24,8 +24,10 @@ jobs:
           node-version: 20
       - name: Prepare approved-style copy and immutable before-after review
         run: |
-          rm -rf revised editorial/reports editorial/review evidence playwright-report test-results delivery _site
+          rm -rf revised editorial/reports editorial/review editorial/ko2/reports evidence playwright-report test-results delivery _site
+          node editorial/ko2/preflight.mjs copy
           node editorial/ko2/prepare.mjs
+          node editorial/ko2/preflight.mjs build
           node scripts/verify-source.mjs
       - name: Install locked tools
         run: |
@@ -57,7 +59,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add editorial/ko editorial/interface/zz-ko2.json editorial/build.mjs editorial/presentation.js tests/editorial.spec.mjs revised editorial/reports editorial/review editorial/ko2/reports
+          git add editorial/ko editorial/ko2/*.json editorial/interface/zz-ko2.json editorial/build.mjs editorial/presentation.js tests/editorial.spec.mjs scripts/build-pages.mjs revised editorial/reports editorial/review editorial/ko2/reports
           git diff --cached --quiet || git commit -m 'Build and validate approved-style ko-2 edition [skip ci]'
           git fetch origin editorial/ko-2
           git rebase origin/editorial/ko-2
