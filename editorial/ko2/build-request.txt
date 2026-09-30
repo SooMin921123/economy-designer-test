@@ -1,1 +1,1 @@
-ko-2 integration run 2: verify authored-input schemas, actual 72-lesson rendering and original safety regressions.
+ko-2 integration run 3: optional caution content checks, preserved grading/storage, and the first six units of revised exercises.
