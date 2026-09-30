@@ -1,0 +1,11 @@
+{
+  "edition": "ko-2",
+  "base": "d98c987d0581dd66e829f1d3ba8d9333c30916b4",
+  "overriddenObjects": {
+    "CL41": 72,
+    "CT41": 78
+  },
+  "changedTextFields": 1377,
+  "removedProvenanceFields": 327,
+  "publicDeployment": false
+}

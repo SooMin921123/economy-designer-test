@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "edition": "ko-2",
+  "lessons": 72,
+  "lessonTabs": 216,
+  "actualParagraphEquality": true,
+  "preservedParagraphBreaks": true,
+  "screenTextEqualsDraft": true,
+  "runtimeStringCount": 7053,
+  "wordingReviewFlags": 77,
+  "errors": [],
+  "physicalDeviceTest": false
+}

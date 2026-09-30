@@ -17,7 +17,7 @@ async function start(page){
  const errors=[];page.on('pageerror',error=>errors.push(error.message));
  await page.goto('/index.html');
  await page.waitForFunction(()=>typeof window.courseGo41==='function');
- await expect(page.locator('meta[name="editorial-revision"]')).toHaveAttribute('content','ko-1');
+ await expect(page.locator('meta[name="editorial-revision"]')).toHaveAttribute('content','ko-2');
  return errors;
 }
 async function fits(page,where){

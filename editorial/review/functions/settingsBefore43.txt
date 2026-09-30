@@ -1,1 +1,1 @@
-function(){return settingsBefore72().replaceAll("정규 45강",'72강').replaceAll('45강 원고',"72강 학습 내용 TXT");}
+function(){return settingsBefore72().replaceAll("정규 45강",'72강').replaceAll('45강 원고',"전체 강의 저장하기(TXT)");}

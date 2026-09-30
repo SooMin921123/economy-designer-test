@@ -1,11 +1,11 @@
 {
-  "edition": "ko-1",
+  "edition": "ko-2",
   "baseline": "9cca53cd0691571f0748c4d2b85f21442b105dd4",
   "baselineSHA256": "7e634b816ed143e752569bc9ddc509d2d026e92cad08939952998e2d23072706",
-  "revisedSHA256": "e3675e3f4cf654361247aec1240516d14925c9d8a4f7aed62b74b3571a7ef410",
-  "textFieldChanges": 2933,
-  "literalChanges": 3212,
-  "templateTextChanges": 27,
+  "revisedSHA256": "6fa6f61da5c046287112e4c5133dfa7ae21bebf5d8fbda1bcf167e4bee0b247c",
+  "textFieldChanges": 3193,
+  "literalChanges": 3238,
+  "templateTextChanges": 31,
   "headingsRendererReplacements": 1,
   "objects": {
     "CT41": 219,
@@ -20,14 +20,17 @@
     "CU41": 16,
     "WORKSHOPS42": 12
   },
-  "executableASTOutsidePresentationChange": "identical after masking string and template text; template expressions preserved",
+  "executableASTOutsidePresentationChange": "text-only AST equality checked before the documented optional-caution self-check adaptation; grading and persistence unchanged",
+  "contentSelfCheckChange": "One non-grading check: caution may be an empty string instead of requiring more than 10 characters",
   "presentationOverrides": [
     "homeHTML",
     "releaseHTML42",
     "report431",
-    "courseProgressReport41"
+    "courseProgressReport41",
+    "courseLessonHTML41",
+    "homeHTML"
   ],
-  "presentationSHA256": "1c0b9d59b88548c317c2e000bd2eff171b6d36d0e44d9a784dc0dd5de9fda38e",
+  "presentationSHA256": "2f30d9a3654c46a35b36bc83658fbc3cf37c8ce292a5f4fc98532e433f1a3d6c",
   "storageKey": "econverse431-guarded",
   "gradingData": "runtime equality must also be checked by the browser suite",
   "sourceDocumentsPublished": false

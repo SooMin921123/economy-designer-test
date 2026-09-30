@@ -1,1 +1,0 @@
-function addLesson41(ch,no,title,goal,paragraphs,example,steps,result,tip,caution,check,refs){const x={id:'L'+String(ch).padStart(2,'0')+'-'+no,ch,no,title,goal,paragraphs,example,steps,result,tip,caution,check,refs,origin:"관련 개념을 정리한 강의. 예제·확인 질문은 학습용 창작"};COURSE41.lessons.push(x);COURSE41.chapters[ch-1].lessons.push(x.id);}

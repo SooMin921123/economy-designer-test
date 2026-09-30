@@ -1,1 +1,6 @@
-function(id){const g=GUIDE_BY43[state.practice43?.last],back=g&&g.lesson===id?"<div class=\"narrow\"><div class=\"notice\">관련 연습: "+esc(g.title)+' <button class="small" data-action="g43-open" data-id="'+g.id+"\">풀던 연습으로 돌아가기</button></div></div>":'';return back+lessonBefore43(id);}
+function(id) {
+  return previous(id)
+    .replace(/<h3>(?:적용 조건과 주의점|유의 사항)<\/h3><p>\s*<\/p>/g, '')
+    .replace(/<span class="tiny muted">강의 확인 문제의 풀이 기록<\/span>/g, '')
+    .replace(/<p class="tiny muted">(?:읽음 표시는 학습 진도를 기록하는 기능입니다\.\s*)?<\/p>/g, '');
+}

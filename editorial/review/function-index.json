@@ -1,9 +1,5 @@
 [
   {
-    "name": "homeHTML",
-    "characters": 2117
-  },
-  {
     "name": "courseHub41",
     "characters": 534
   },
@@ -17,7 +13,7 @@
   },
   {
     "name": "courseLessonHTML41",
-    "characters": 282
+    "characters": 255
   },
   {
     "name": "courseTaskHTML41",
@@ -61,7 +57,7 @@
   },
   {
     "name": "settingsHTML",
-    "characters": 2699
+    "characters": 2766
   },
   {
     "name": "releaseHTML42",
@@ -189,7 +185,7 @@
   },
   {
     "name": "coreLessonHTML41",
-    "characters": 2147
+    "characters": 2136
   },
   {
     "name": "coreStageHTML41",
@@ -222,10 +218,6 @@
   {
     "name": "corePaintLab41",
     "characters": 916
-  },
-  {
-    "name": "addLesson41",
-    "characters": 327
   },
   {
     "name": "courseExternalLabel41",
@@ -381,7 +373,7 @@
   },
   {
     "name": "supplement42",
-    "characters": 501
+    "characters": 433
   },
   {
     "name": "lessonCard72",
@@ -437,7 +429,7 @@
   },
   {
     "name": "sourceBefore43",
-    "characters": 697
+    "characters": 971
   },
   {
     "name": "homeBefore43",
@@ -449,11 +441,11 @@
   },
   {
     "name": "lessonBefore43",
-    "characters": 2688
+    "characters": 2604
   },
   {
     "name": "libraryBefore43",
-    "characters": 1267
+    "characters": 1275
   },
   {
     "name": "reviewBefore43",
@@ -469,7 +461,7 @@
   },
   {
     "name": "settingsBefore43",
-    "characters": 102
+    "characters": 104
   },
   {
     "name": "actionLast43",
@@ -481,7 +473,7 @@
   },
   {
     "name": "releaseBefore43",
-    "characters": 1223
+    "characters": 1225
   },
   {
     "name": "guideTests43",
@@ -489,7 +481,7 @@
   },
   {
     "name": "testsBase43",
-    "characters": 1100
+    "characters": 1110
   },
   {
     "name": "preflight431",
