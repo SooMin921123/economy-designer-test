@@ -25,6 +25,7 @@ jobs:
       - name: Prepare approved-style copy and immutable before-after review
         run: |
           rm -rf revised editorial/reports editorial/review editorial/ko2/reports evidence playwright-report test-results delivery _site
+          node editorial/ko2/refine.mjs
           node editorial/ko2/preflight.mjs copy
           node editorial/ko2/prepare.mjs
           node editorial/ko2/preflight.mjs build
