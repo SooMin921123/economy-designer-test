@@ -1,0 +1,17 @@
+{
+  "baseline": "9cca53cd0691571f0748c4d2b85f21442b105dd4",
+  "sha256": "7e634b816ed143e752569bc9ddc509d2d026e92cad08939952998e2d23072706",
+  "bytes": 631910,
+  "names": {
+    "CAST": 6,
+    "CASES": 3,
+    "LESSONS": 12,
+    "COURSE41": 5,
+    "CAMPAIGNS42": 6,
+    "CU41": 16,
+    "WORKSHOPS42": 12,
+    "GUIDES43": 30,
+    "GUIDE_BY43": 30
+  },
+  "koreanStringLiterals": 5157
+}
