@@ -1,0 +1,1 @@
+function(id){const g=GUIDE_BY43[state.practice43?.last],back=g&&g.lesson===id?"<div class=\"narrow\"><div class=\"notice\">관련 연습: "+esc(g.title)+' <button class="small" data-action="g43-open" data-id="'+g.id+"\">풀던 연습으로 돌아가기</button></div></div>":'';return back+lessonBefore43(id);}

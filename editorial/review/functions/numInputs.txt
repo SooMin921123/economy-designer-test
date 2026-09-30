@@ -1,0 +1,1 @@
+function numInputs(labels){return labels.map((l,i)=>`<div class="field"><label for="n${i}">${esc(l)}</label><input id="n${i}" type="text" inputmode="text" autocomplete="off" maxlength="60" placeholder="수 또는 1/2" data-field="number" data-index="${i}" value="${esc(r.nums[i]||'')}"></div>`).join('')+`<p class="tiny muted">단위는 질문에 표시되어 있습니다. 숫자 칸에는 0.5, 1/2, -3처럼 입력하세요.</p>`;}

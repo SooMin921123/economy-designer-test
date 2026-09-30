@@ -2,15 +2,31 @@
   "edition": "ko-1",
   "baseline": "9cca53cd0691571f0748c4d2b85f21442b105dd4",
   "baselineSHA256": "7e634b816ed143e752569bc9ddc509d2d026e92cad08939952998e2d23072706",
-  "revisedSHA256": "7746f10511bb6abb7c22d2ec59deebaf3ae80832b0be4762530c79d1bdbd7b79",
-  "textFieldChanges": 1193,
-  "literalChanges": 1685,
+  "revisedSHA256": "ac35c6b9384e6d217b4ea6229534887c7ce04ee2c7d0e948b487980d31749615",
+  "textFieldChanges": 2933,
+  "literalChanges": 3117,
   "headingsRendererReplacements": 1,
   "objects": {
+    "CT41": 219,
+    "CAMPAIGNS42": 6,
+    "PROJECTS42": 6,
+    "CAST": 6,
+    "CASES": 3,
+    "GUIDES43": 30,
+    "LESSONS": 12,
+    "STAGES": 36,
     "CL41": 72,
-    "CT41": 13
+    "CU41": 16,
+    "WORKSHOPS42": 12
   },
   "executableASTOutsidePresentationChange": "identical after masking string literals",
+  "presentationOverrides": [
+    "homeHTML",
+    "releaseHTML42",
+    "report431",
+    "courseProgressReport41"
+  ],
+  "presentationSHA256": "1c0b9d59b88548c317c2e000bd2eff171b6d36d0e44d9a784dc0dd5de9fda38e",
   "storageKey": "econverse431-guarded",
   "gradingData": "runtime equality must also be checked by the browser suite",
   "sourceDocumentsPublished": false

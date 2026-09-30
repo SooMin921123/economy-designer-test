@@ -1,0 +1,26 @@
+function preflight431(raw){
+ if(!object431(raw)||raw.schema!=='econverse-4'||raw.contentVersion!==DATA_VERSION)throw new Error('지원하는 학습 백업 형식이 아닙니다. 현재 기록은 바꾸지 않았습니다.');
+ if(!COMPATIBLE431.includes(raw.build))throw new Error('문항 내용의 호환성을 확인하지 않은 제작 버전입니다: '+String(raw.build||'버전 없음')+". 72강 4.2(full-course.1),4.3(guided-review.1),4.3.1만 이 복원 절차에서 지원합니다.");
+ if(!object431(raw.course41)||raw.course41.version!==1)throw new Error('정규 과정 저장 구조의 버전을 확인할 수 없습니다. 자동으로 빈 기록으로 바꾸지 않습니다.');
+ if(raw.practice43!=null&&(!object431(raw.practice43)||raw.practice43.version!==1))throw new Error("단계별 연습 저장 버전이 지원 범위를 벗어납니다.");
+ const warnings=[];
+ function bucket(label,obj,ids){if(obj==null)return;if(!object431(obj))throw new Error(label+'이 올바른 객체 구조가 아닙니다.');const unknown=Object.keys(obj).filter(id=>!ids.has(id)&&meaningful431(obj[id]));if(unknown.length)throw new Error(label+'에 알 수 없는 ID가 있습니다: '+unknown.slice(0,5).join(', ')+'. 이 항목을 버리고 진행하지 않습니다.');}
+ const focusIds=new Set(STAGES.filter(s=>s.kind==='task').map(s=>s.id)),focusLessons=new Set(LESSONS.map(l=>l.id)),regularIds=new Set(COURSE41.tasks.map(t=>t.id)),lessonIds=new Set(COURSE41.lessons.map(l=>l.id));
+ bucket('집중 답안',raw.records,focusIds);bucket('집중 초안',raw.drafts,focusIds);bucket('집중 읽음',raw.read,focusLessons);bucket('집중 메모',raw.notes,new Set(CASES.map(c=>c.id)));
+ bucket('정규 답안',raw.course41.records,regularIds);bucket('정규 초안',raw.course41.drafts,regularIds);bucket('정규 읽음',raw.course41.read,lessonIds);bucket('정규 확인',raw.course41.checks,lessonIds);bucket('정규 메모',raw.course41.notes,new Set(Object.keys(CU41)));bucket('프로젝트',raw.projects42,new Set(PROJECTS42.map(p=>p.id)));bucket("단계별 연습",raw.practice43?.records,new Set(GUIDES43.map(g=>g.id)));
+ function text(label,v,limit){if(v==null)return;if(typeof v!=='string')throw new Error(label+"의 저장된 글을 읽을 수 없습니다.");if(v.length>limit)throw new Error(label+'이 '+limit+'자 한도를 넘습니다. 긴 원고를 잘라서 복원하지 않습니다.');}
+ for(const c of CASES)text('집중 '+c.id+' 메모',raw.notes?.[c.id],30000);
+ for(const id of Object.keys(CU41))text(id+'단원 메모',raw.course41.notes?.[id],50000);
+ text('편집창',raw.editor?.text,60000);if(raw.editor?.snapshots!=null&&!Array.isArray(raw.editor.snapshots))throw new Error('이전 초안 목록의 형식이 맞지 않습니다.');for(const s of raw.editor?.snapshots||[])text('이전 편집 초안',s?.text,60000);
+ for(const p of PROJECTS42)text(p.title,raw.projects42?.[p.id]?.text,50000);
+ for(const g of GUIDES43)text(g.id+' 나의 설명',raw.practice43?.records?.[g.id]?.note,10000);
+ for(const s of STAGES.filter(s=>s.type==='write')){text(s.id+' 설명',raw.records?.[s.id]?.solved?.text,24000);text(s.id+' 설명 초안',raw.drafts?.[s.id]?.text,24000);}
+ const next=normalize(raw);let excluded=0,trimmed=0;
+ for(const t of COURSE41.tasks){const old=raw.course41.records?.[t.id];if(old?.solved&&!next.course41.records[t.id]?.solved)excluded++;if(Array.isArray(old?.history)&&old.history.length>15)trimmed+=old.history.length-15;}
+ for(const s of STAGES.filter(s=>s.kind==='task')){const old=raw.records?.[s.id];if(old?.solved&&!next.records[s.id]?.solved)excluded++;if(Array.isArray(old?.history)&&old.history.length>15)trimmed+=old.history.length-15;}
+ for(const g of GUIDES43){const old=raw.practice43?.records?.[g.id];for(let i=0;i<g.steps.length;i++){if(old?.steps?.[i]?.solved&&!next.practice43.records[g.id]?.steps[i]?.solved)excluded++;const h=old?.steps?.[i]?.history;if(Array.isArray(h)&&h.length>12)trimmed+=h.length-12;}}
+ if(excluded)warnings.push('현재 채점 조건과 맞지 않는 해결 표시 '+excluded+'개는 승인하지 않습니다. 원본 백업은 수정하지 않습니다.');
+ if(trimmed)warnings.push('설정된 최근 이력 한도를 넘어선 응답 '+trimmed+'개는 앱 안의 최근 이력에서 제외됩니다. 원본 파일을 보관하세요.');
+ if((raw.editor?.snapshots?.length||0)>5)warnings.push("편집창의 이전 초안은 최근 5개까지만 복원됩니다. 전체 원본 파일을 보관하세요.");
+ return {next,warnings,excluded,trimmed,build:raw.build};
+}

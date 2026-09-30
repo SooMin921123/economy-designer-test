@@ -1,0 +1,1 @@
+function(){return notesBefore43()+"\n\n[4.3 단계별 연습의 나의 설명]\n"+GUIDES43.map(g=>g.id+' '+g.title+'\n'+(state.practice43.records[g.id]?.note||'(미작성)')).join('\n\n');}

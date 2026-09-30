@@ -1,0 +1,1 @@
+function courseExternalLabel41(t){return {private:'활동 주체의 이익',negative:'이익−제3자 피해',positive:'이익+제3자 편익',tax:'부담금 납부 후 개인 이익',subsidy:'보조금 수령 후 개인 이익'}[t.d.mode];}

@@ -5,6 +5,9 @@
   "regularTasks": 195,
   "allRuntimeTasks": 219,
   "guides": 30,
+  "legacyLessons": 12,
+  "legacyStages": 36,
+  "routeTextSamples": 17,
   "errors": [],
   "storageKey": "econverse431-guarded"
 }

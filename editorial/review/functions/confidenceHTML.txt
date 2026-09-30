@@ -1,0 +1,1 @@
+function confidenceHTML(){return `<div class="confidence"><small>답을 확인하기 전에 확신도를 표시하세요.</small>${[['sure','확실함'],['unsure','애매함'],['guess','추측함']].map(([v,t])=>`<button class="${r.confidence===v?'selected':''}" data-action="confidence" data-value="${v}">${t}</button>`).join('')}</div>`;}

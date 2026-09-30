@@ -1,0 +1,1 @@
+function(){return "<section class=\"card\"><h2>30개 풀이 연습의 집필 재료</h2><p>문제·단계별 해설·마지막 확인 질문과 자신의 설명을 구분해서 보관합니다.</p><div class=\"actions\"><button data-action=\"g43-export\">단계별 30사례 원고 JSON</button><button data-action=\"v42-export-all\">개인 메모·설명 TXT</button></div></section>"+studioBefore43();}
