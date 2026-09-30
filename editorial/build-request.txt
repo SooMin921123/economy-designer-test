@@ -1,0 +1,1 @@
+Review request 8: preserve the exact captured original and recovered baseline; validate authored JSON by static table/UI schemas, reject textbook documents and private learning-state backups; compile the Korean edition and run the entire desktop/mobile browser suite and clean PWA packaging. Previous runs stopped before browser execution, so they are not browser passes.

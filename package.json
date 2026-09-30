@@ -4,10 +4,11 @@
   "version": "4.3.1",
   "type": "module",
   "scripts": {
-    "prepare": "node scripts/prepare-pwa.mjs",
+    "prepare": "node editorial/build.mjs && node scripts/prepare-pwa.mjs",
     "test:e2e": "npm run prepare && playwright test"
   },
   "devDependencies": {
-    "@playwright/test": "^1.55.0"
+    "@playwright/test": "^1.55.0",
+    "acorn": "8.15.0"
   }
 }

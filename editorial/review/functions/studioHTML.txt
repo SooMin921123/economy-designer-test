@@ -1,0 +1,1 @@
+function(){return "<section class=\"card\"><h2>단계별 풀이를 설명에 활용하기</h2><p>제시된 문제와 해설을 살펴보고 자신의 설명을 따로 정리해 보세요.</p><div class=\"actions\"><button data-action=\"g43-export\">단계별 풀이 30개 JSON</button><button data-action=\"v42-export-all\">개인 메모·설명 TXT</button></div></section>"+studioBefore43();}

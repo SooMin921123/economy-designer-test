@@ -1,0 +1,1 @@
+function(){return earlierReview42().replaceAll("신규 7문제","신규 15문제").replaceAll("새로운 조건의 문제 7개","새로운 조건의 문제 15개");}

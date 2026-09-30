@@ -1,0 +1,530 @@
+[
+  {
+    "name": "homeHTML",
+    "characters": 2117
+  },
+  {
+    "name": "courseHub41",
+    "characters": 534
+  },
+  {
+    "name": "courseUnit41",
+    "characters": 297
+  },
+  {
+    "name": "libraryHTML",
+    "characters": 238
+  },
+  {
+    "name": "courseLessonHTML41",
+    "characters": 282
+  },
+  {
+    "name": "courseTaskHTML41",
+    "characters": 228
+  },
+  {
+    "name": "courseHint41",
+    "characters": 343
+  },
+  {
+    "name": "courseRefs41",
+    "characters": 360
+  },
+  {
+    "name": "guideHub43",
+    "characters": 1231
+  },
+  {
+    "name": "guidePage43",
+    "characters": 3562
+  },
+  {
+    "name": "campaignHub42",
+    "characters": 501
+  },
+  {
+    "name": "campaignHTML42",
+    "characters": 634
+  },
+  {
+    "name": "projectHTML42",
+    "characters": 1311
+  },
+  {
+    "name": "workshopHTML42",
+    "characters": 1663
+  },
+  {
+    "name": "labResult42",
+    "characters": 399
+  },
+  {
+    "name": "settingsHTML",
+    "characters": 2699
+  },
+  {
+    "name": "releaseHTML42",
+    "characters": 1076
+  },
+  {
+    "name": "refsHTML",
+    "characters": 376
+  },
+  {
+    "name": "lessonHTML",
+    "characters": 514
+  },
+  {
+    "name": "portrait",
+    "characters": 1889
+  },
+  {
+    "name": "cityMap",
+    "characters": 1705
+  },
+  {
+    "name": "choiceScene",
+    "characters": 1064
+  },
+  {
+    "name": "publicScene",
+    "characters": 1591
+  },
+  {
+    "name": "tradeScene",
+    "characters": 1856
+  },
+  {
+    "name": "ppfPicture",
+    "characters": 1250
+  },
+  {
+    "name": "picture",
+    "characters": 492
+  },
+  {
+    "name": "frame",
+    "characters": 415
+  },
+  {
+    "name": "stageBar",
+    "characters": 498
+  },
+  {
+    "name": "numInputs",
+    "characters": 380
+  },
+  {
+    "name": "rangeControl",
+    "characters": 253
+  },
+  {
+    "name": "taskControls",
+    "characters": 3618
+  },
+  {
+    "name": "solutionHTML",
+    "characters": 1400
+  },
+  {
+    "name": "confidenceHTML",
+    "characters": 288
+  },
+  {
+    "name": "stageHTML",
+    "characters": 535
+  },
+  {
+    "name": "reviewHTML",
+    "characters": 272
+  },
+  {
+    "name": "studioHTML",
+    "characters": 289
+  },
+  {
+    "name": "labHTML",
+    "characters": 1902
+  },
+  {
+    "name": "labResultText",
+    "characters": 643
+  },
+  {
+    "name": "paintLab",
+    "characters": 180
+  },
+  {
+    "name": "next",
+    "characters": 215
+  },
+  {
+    "name": "lessonsMarkdown",
+    "characters": 677
+  },
+  {
+    "name": "handleAction",
+    "characters": 2512
+  },
+  {
+    "name": "runChecks",
+    "characters": 549
+  },
+  {
+    "name": "sourceHTML",
+    "characters": 242
+  },
+  {
+    "name": "exportPWA",
+    "characters": 1810
+  },
+  {
+    "name": "setupPWA",
+    "characters": 846
+  },
+  {
+    "name": "modeLabel41",
+    "characters": 228
+  },
+  {
+    "name": "coreLessonHTML41",
+    "characters": 2147
+  },
+  {
+    "name": "coreStageHTML41",
+    "characters": 1901
+  },
+  {
+    "name": "coreCaseHTML41",
+    "characters": 1203
+  },
+  {
+    "name": "coreStudioHTML41",
+    "characters": 1779
+  },
+  {
+    "name": "coreHandle41",
+    "characters": 4123
+  },
+  {
+    "name": "coreSettings41",
+    "characters": 2987
+  },
+  {
+    "name": "coreChecks41",
+    "characters": 3793
+  },
+  {
+    "name": "choiceBoard41",
+    "characters": 1868
+  },
+  {
+    "name": "corePaintLab41",
+    "characters": 916
+  },
+  {
+    "name": "addLesson41",
+    "characters": 327
+  },
+  {
+    "name": "courseExternalLabel41",
+    "characters": 162
+  },
+  {
+    "name": "courseButton41",
+    "characters": 425
+  },
+  {
+    "name": "courseNumbers41",
+    "characters": 439
+  },
+  {
+    "name": "courseSlider41",
+    "characters": 496
+  },
+  {
+    "name": "courseControls41",
+    "characters": 561
+  },
+  {
+    "name": "courseSolution41",
+    "characters": 170
+  },
+  {
+    "name": "courseVisual41",
+    "characters": 213
+  },
+  {
+    "name": "courseSubmit41",
+    "characters": 996
+  },
+  {
+    "name": "courseNotesHTML41",
+    "characters": 996
+  },
+  {
+    "name": "courseMarkdown41",
+    "characters": 653
+  },
+  {
+    "name": "priorHandler42",
+    "characters": 2052
+  },
+  {
+    "name": "previousFrame42",
+    "characters": 545
+  },
+  {
+    "name": "previousRender42",
+    "characters": 598
+  },
+  {
+    "name": "previousReview42",
+    "characters": 904
+  },
+  {
+    "name": "previousStudio42",
+    "characters": 655
+  },
+  {
+    "name": "previousSettings42",
+    "characters": 503
+  },
+  {
+    "name": "courseAudit41",
+    "characters": 4261
+  },
+  {
+    "name": "oldControls42",
+    "characters": 3620
+  },
+  {
+    "name": "oldSolution42",
+    "characters": 1234
+  },
+  {
+    "name": "oldVisual42",
+    "characters": 1080
+  },
+  {
+    "name": "oldHint42",
+    "characters": 796
+  },
+  {
+    "name": "tradeVisual42",
+    "characters": 831
+  },
+  {
+    "name": "projectHub42",
+    "characters": 468
+  },
+  {
+    "name": "paintWorkshop42",
+    "characters": 606
+  },
+  {
+    "name": "districtMap42",
+    "characters": 630
+  },
+  {
+    "name": "earlierLibrary42",
+    "characters": 1056
+  },
+  {
+    "name": "earlierStudio42",
+    "characters": 649
+  },
+  {
+    "name": "earlierReview42",
+    "characters": 644
+  },
+  {
+    "name": "earlierSettings42",
+    "characters": 850
+  },
+  {
+    "name": "earlierHandle42",
+    "characters": 4084
+  },
+  {
+    "name": "earlierRegister42",
+    "characters": 1651
+  },
+  {
+    "name": "earlierTaskPage42",
+    "characters": 2260
+  },
+  {
+    "name": "allNotes42",
+    "characters": 163
+  },
+  {
+    "name": "priorMarkdown42",
+    "characters": 726
+  },
+  {
+    "name": "exactNumber42",
+    "characters": 276
+  },
+  {
+    "name": "rationalSolution42",
+    "characters": 593
+  },
+  {
+    "name": "nodeSyntaxRunner42",
+    "characters": 931
+  },
+  {
+    "name": "dataExportHandler42",
+    "characters": 2696
+  },
+  {
+    "name": "supplement42",
+    "characters": 501
+  },
+  {
+    "name": "lessonCard72",
+    "characters": 360
+  },
+  {
+    "name": "unitBefore72",
+    "characters": 1090
+  },
+  {
+    "name": "hubBefore72",
+    "characters": 937
+  },
+  {
+    "name": "homeBefore72",
+    "characters": 2222
+  },
+  {
+    "name": "studioBefore72",
+    "characters": 362
+  },
+  {
+    "name": "settingsBefore72",
+    "characters": 1899
+  },
+  {
+    "name": "handlerBefore72",
+    "characters": 288
+  },
+  {
+    "name": "testsBefore72",
+    "characters": 2686
+  },
+  {
+    "name": "guideAnswerHTML43",
+    "characters": 177
+  },
+  {
+    "name": "guideCards43",
+    "characters": 417
+  },
+  {
+    "name": "actionBefore43",
+    "characters": 708
+  },
+  {
+    "name": "eventsBefore43",
+    "characters": 1666
+  },
+  {
+    "name": "labBefore43",
+    "characters": 4572
+  },
+  {
+    "name": "sourceBefore43",
+    "characters": 697
+  },
+  {
+    "name": "homeBefore43",
+    "characters": 596
+  },
+  {
+    "name": "unitBefore43",
+    "characters": 375
+  },
+  {
+    "name": "lessonBefore43",
+    "characters": 2688
+  },
+  {
+    "name": "libraryBefore43",
+    "characters": 1267
+  },
+  {
+    "name": "reviewBefore43",
+    "characters": 113
+  },
+  {
+    "name": "notesBefore43",
+    "characters": 210
+  },
+  {
+    "name": "studioBefore43",
+    "characters": 60
+  },
+  {
+    "name": "settingsBefore43",
+    "characters": 102
+  },
+  {
+    "name": "actionLast43",
+    "characters": 2556
+  },
+  {
+    "name": "guidedMarkdown43",
+    "characters": 605
+  },
+  {
+    "name": "releaseBefore43",
+    "characters": 1223
+  },
+  {
+    "name": "guideTests43",
+    "characters": 3277
+  },
+  {
+    "name": "testsBase43",
+    "characters": 1100
+  },
+  {
+    "name": "preflight431",
+    "characters": 3760
+  },
+  {
+    "name": "restorePreview431",
+    "characters": 1599
+  },
+  {
+    "name": "replaceStored431",
+    "characters": 1036
+  },
+  {
+    "name": "applyRestore431",
+    "characters": 896
+  },
+  {
+    "name": "saveBefore431",
+    "characters": 201
+  },
+  {
+    "name": "actionBefore431",
+    "characters": 522
+  },
+  {
+    "name": "patchTests431",
+    "characters": 4125
+  },
+  {
+    "name": "checksBefore431",
+    "characters": 150
+  },
+  {
+    "name": "rangeBefore431",
+    "characters": 496
+  }
+]

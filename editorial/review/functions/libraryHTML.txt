@@ -1,0 +1,1 @@
+function(){return "<section class=\"card\"><h2>개념을 익힌 뒤 직접 풀어 보기</h2><p>강의의 예제와 확인 문제로 개념을 적용해 보세요. 단계별 풀이에서는 하나의 상황을 세 단계로 나누어 계산과 판단의 과정을 연습할 수 있습니다.</p><button data-action=\"g43-hub\">단계별 풀이 30사례</button></section>"+libraryBefore43();}

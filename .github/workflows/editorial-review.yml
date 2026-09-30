@@ -1,0 +1,93 @@
+name: Korean edition review
+on:
+  push:
+    branches: [editorial/ko-431]
+    paths: [.github/workflows/editorial-review.yml, editorial/build-request.txt]
+permissions:
+  contents: write
+jobs:
+  review:
+    if: github.ref == 'refs/heads/editorial/ko-431'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: editorial/ko-431
+      - name: Validate all editorial inputs and remove stale reports
+        run: |
+          rm -rf revised editorial/reports editorial/review evidence playwright-report test-results delivery
+          python3 - <<'PY'
+          import json, pathlib, sys
+          errors=[]
+          paths=list(pathlib.Path('editorial/ko').glob('*.json'))+list(pathlib.Path('editorial/interface').glob('*.json'))
+          for p in sorted(paths):
+              try:
+                  json.loads(p.read_text(encoding='utf-8'))
+              except json.JSONDecodeError as e:
+                  text=p.read_text(encoding='utf-8')
+                  detail={'file':str(p),'line':e.lineno,'column':e.colno,'message':e.msg,'context':text[max(0,e.pos-160):e.pos+160]}
+                  errors.append(detail)
+                  print(json.dumps(detail,ensure_ascii=False))
+          pathlib.Path('editorial/reports').mkdir(parents=True,exist_ok=True)
+          pathlib.Path('editorial/reports/input-validation.json').write_text(json.dumps({'passed':not errors,'files':len(paths),'errors':errors},ensure_ascii=False,indent=2),encoding='utf-8')
+          if errors: sys.exit(1)
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Select revised runtime without altering verified baseline
+        run: node editorial/activate-revision.mjs
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium
+      - name: Verify baseline and compile Korean edition
+        run: |
+          node scripts/verify-source.mjs
+          node editorial/build.mjs
+      - name: Check runtime data and collect active interface text
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/editorial-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          sleep 2
+          node editorial/inspect.mjs
+      - name: Run every desktop and mobile browser test on revised runtime
+        run: |
+          set -o pipefail
+          mkdir -p evidence
+          npm run test:e2e 2>&1 | tee evidence/editorial-test-console.log
+      - name: Record exact browser test outcomes
+        if: always()
+        run: |
+          if [ -f evidence/results.json ]; then node editorial/summarize-tests.mjs; fi
+      - name: Validate clean PWA export and Pages package
+        run: node scripts/build-pages.mjs
+      - name: Prepare learner delivery only after all checks pass
+        run: node editorial/package-delivery.mjs
+      - name: Preserve validated edition and reports
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add revised editorial/reports editorial/review package.json package-lock.json scripts/prepare-pwa.mjs scripts/build-pages.mjs tests/safety.spec.mjs deployment-tests/live.spec.mjs editorial/ko/questions-11.json
+          git diff --cached --quiet || git commit -m 'Validate Korean edition and assemble learner delivery'
+          git pull --rebase origin editorial/ko-431
+          git push origin HEAD:editorial/ko-431
+      - name: Upload learner files separately from developer evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: economy-designer-4.3.1-ko-delivery-${{ github.run_id }}
+          path: delivery/
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: korean-review-${{ github.run_id }}
+          path: |
+            revised/
+            editorial/reports/
+            editorial/review/
+            evidence/
+            playwright-report/
+            test-results/
+            _site/
+          if-no-files-found: warn

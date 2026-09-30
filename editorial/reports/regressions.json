@@ -1,0 +1,340 @@
+{
+  "runId": "36670339331",
+  "commit": "3bf58dd6047db0e23eb941a37ec93d753ad0b714",
+  "stats": {
+    "startTime": "2026-09-30T04:47:03.310Z",
+    "duration": 108787.632,
+    "expected": 36,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "title": "4.3.1 boots cleanly in Desktop Chromium and mobile viewport",
+      "file": "economy-designer.spec.mjs",
+      "project": "desktop-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 579,
+      "errors": []
+    },
+    {
+      "title": "localStorage survives an actual settings change and reload",
+      "file": "economy-designer.spec.mjs",
+      "project": "desktop-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 731,
+      "errors": []
+    },
+    {
+      "title": "related lecture round trip preserves submitted C03-04 answer and record",
+      "file": "economy-designer.spec.mjs",
+      "project": "desktop-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 740,
+      "errors": []
+    },
+    {
+      "title": "empty C13-04 slider value is restored after navigation and full reload",
+      "file": "economy-designer.spec.mjs",
+      "project": "desktop-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 671,
+      "errors": []
+    },
+    {
+      "title": "restore preview and cancel are non-destructive",
+      "file": "economy-designer.spec.mjs",
+      "project": "desktop-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 561,
+      "errors": []
+    },
+    {
+      "title": "manifest and service worker are valid and active",
+      "file": "economy-designer.spec.mjs",
+      "project": "desktop-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 530,
+      "errors": []
+    },
+    {
+      "title": "online first load is reusable offline through the service worker cache",
+      "file": "economy-designer.spec.mjs",
+      "project": "desktop-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 645,
+      "errors": []
+    },
+    {
+      "title": "4.3.1 boots cleanly in Desktop Chromium and mobile viewport",
+      "file": "economy-designer.spec.mjs",
+      "project": "mobile-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 563,
+      "errors": []
+    },
+    {
+      "title": "localStorage survives an actual settings change and reload",
+      "file": "economy-designer.spec.mjs",
+      "project": "mobile-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 663,
+      "errors": []
+    },
+    {
+      "title": "related lecture round trip preserves submitted C03-04 answer and record",
+      "file": "economy-designer.spec.mjs",
+      "project": "mobile-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 657,
+      "errors": []
+    },
+    {
+      "title": "empty C13-04 slider value is restored after navigation and full reload",
+      "file": "economy-designer.spec.mjs",
+      "project": "mobile-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 621,
+      "errors": []
+    },
+    {
+      "title": "restore preview and cancel are non-destructive",
+      "file": "economy-designer.spec.mjs",
+      "project": "mobile-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 483,
+      "errors": []
+    },
+    {
+      "title": "manifest and service worker are valid and active",
+      "file": "economy-designer.spec.mjs",
+      "project": "mobile-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 476,
+      "errors": []
+    },
+    {
+      "title": "online first load is reusable offline through the service worker cache",
+      "file": "economy-designer.spec.mjs",
+      "project": "mobile-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 618,
+      "errors": []
+    },
+    {
+      "title": "Korean edition preserves original source, all numeric data, answers, IDs and references",
+      "file": "editorial.spec.mjs",
+      "project": "desktop-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 673,
+      "errors": []
+    },
+    {
+      "title": "All 72 lessons render their three tabs, worked examples and correct mini-quiz feedback",
+      "file": "editorial.spec.mjs",
+      "project": "desktop-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 16700,
+      "errors": []
+    },
+    {
+      "title": "All 219 course task screens and 36 focused-case stages render without stale metadata or page overflow",
+      "file": "editorial.spec.mjs",
+      "project": "desktop-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 9707,
+      "errors": []
+    },
+    {
+      "title": "All 30 guided practices accept their unchanged answers through all 90 real UI steps",
+      "file": "editorial.spec.mjs",
+      "project": "desktop-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 16882,
+      "errors": []
+    },
+    {
+      "title": "Internal self-checks run on the Korean edition without changing learning records",
+      "file": "editorial.spec.mjs",
+      "project": "desktop-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 372,
+      "errors": []
+    },
+    {
+      "title": "Korean edition preserves original source, all numeric data, answers, IDs and references",
+      "file": "editorial.spec.mjs",
+      "project": "mobile-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 634,
+      "errors": []
+    },
+    {
+      "title": "All 72 lessons render their three tabs, worked examples and correct mini-quiz feedback",
+      "file": "editorial.spec.mjs",
+      "project": "mobile-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 15585,
+      "errors": []
+    },
+    {
+      "title": "All 219 course task screens and 36 focused-case stages render without stale metadata or page overflow",
+      "file": "editorial.spec.mjs",
+      "project": "mobile-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 7461,
+      "errors": []
+    },
+    {
+      "title": "All 30 guided practices accept their unchanged answers through all 90 real UI steps",
+      "file": "editorial.spec.mjs",
+      "project": "mobile-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 15166,
+      "errors": []
+    },
+    {
+      "title": "Internal self-checks run on the Korean edition without changing learning records",
+      "file": "editorial.spec.mjs",
+      "project": "mobile-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 374,
+      "errors": []
+    },
+    {
+      "title": "existing synthetic solved answers and notes survive reload; contexts stay isolated",
+      "file": "safety.spec.mjs",
+      "project": "desktop-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 1240,
+      "errors": []
+    },
+    {
+      "title": "real file-input preview and cancel preserve memory and localStorage",
+      "file": "safety.spec.mjs",
+      "project": "desktop-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 876,
+      "errors": []
+    },
+    {
+      "title": "unknown-ID backup is rejected without replacing existing records",
+      "file": "safety.spec.mjs",
+      "project": "desktop-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 792,
+      "errors": []
+    },
+    {
+      "title": "confirmed synthetic restore persists and checkpoint recovery restores prior records",
+      "file": "safety.spec.mjs",
+      "project": "desktop-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 1246,
+      "errors": []
+    },
+    {
+      "title": "offline new tab is served by service worker; cold offline context cannot load",
+      "file": "safety.spec.mjs",
+      "project": "desktop-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 1185,
+      "errors": []
+    },
+    {
+      "title": "app-generated PWA ZIP excludes private fixtures and its own assets reopen offline",
+      "file": "safety.spec.mjs",
+      "project": "desktop-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 1833,
+      "errors": []
+    },
+    {
+      "title": "existing synthetic solved answers and notes survive reload; contexts stay isolated",
+      "file": "safety.spec.mjs",
+      "project": "mobile-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 1190,
+      "errors": []
+    },
+    {
+      "title": "real file-input preview and cancel preserve memory and localStorage",
+      "file": "safety.spec.mjs",
+      "project": "mobile-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 918,
+      "errors": []
+    },
+    {
+      "title": "unknown-ID backup is rejected without replacing existing records",
+      "file": "safety.spec.mjs",
+      "project": "mobile-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 768,
+      "errors": []
+    },
+    {
+      "title": "confirmed synthetic restore persists and checkpoint recovery restores prior records",
+      "file": "safety.spec.mjs",
+      "project": "mobile-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 1359,
+      "errors": []
+    },
+    {
+      "title": "offline new tab is served by service worker; cold offline context cannot load",
+      "file": "safety.spec.mjs",
+      "project": "mobile-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 1120,
+      "errors": []
+    },
+    {
+      "title": "app-generated PWA ZIP excludes private fixtures and its own assets reopen offline",
+      "file": "safety.spec.mjs",
+      "project": "mobile-chromium",
+      "status": "expected",
+      "resultStatus": "passed",
+      "durationMs": 1790,
+      "errors": []
+    }
+  ],
+  "failed": [],
+  "passed": true
+}

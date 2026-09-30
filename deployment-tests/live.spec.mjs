@@ -10,7 +10,7 @@ const app = (page,code) => page.evaluate(code=>(0,eval)(code),code);
 const disk = page => page.evaluate(key=>JSON.parse(localStorage.getItem(key)),STORE);
 const normalizeTime = x => ({...x,activeSeconds42:0});
 const sha = data => createHash('sha256').update(data).digest('hex');
-const source = await fs.readFile('source/economy-designer-4.3.1.html','utf8');
+const source = await fs.readFile('revised/economy-designer-4.3.1-ko.html','utf8');
 const expectedCode = source.match(/<script id="app-code">([\s\S]*?)<\/script>/)[1].replace(/\r\n/g,'\n');
 const test = base.extend({ page: async ({page},use,testInfo)=>{
   const errors=[];

@@ -1,0 +1,1 @@
+function exactNumber42(v){if(!Number.isFinite(v))return '—';if(Math.abs(v-Number(v.toFixed(4)))<1e-9)return f(v);for(let d=2;d<=1000;d++){const n=Math.round(v*d);if(Math.abs(v-n/d)<1e-9)return n+'/'+d+' (약 '+Number(v.toFixed(6))+')';}return String(Number(v.toPrecision(12)));}

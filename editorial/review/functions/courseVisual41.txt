@@ -1,0 +1,1 @@
+function(t,a,reveal){if(['ppf','trade','external'].includes(t.type)&&!Number.isFinite(num(a?.value)))return "<p class=\"notice\">아직 값을 입력하지 않았습니다. 숫자를 입력하거나 슬라이더를 움직여 주세요.</p>";return visualBefore431(t,a,reveal);}

@@ -1,0 +1,1 @@
+function lessonCard72(l){return '<button class="card bookcard" data-action="c41-lesson" data-id="'+l.id+'"><span class="tag">'+l.id+' · '+(l.ch===0?'기초':l.supplement?'심화·조건 변경':'기본 강의')+'</span><h3>'+esc(l.title)+'</h3><p class="smalltext muted">'+esc(l.goal)+'</p><span class="tiny muted">'+(cpState41().read[l.id]?"학습한 강의":'설명·예제·확인·숏컷')+'</span></button>';}

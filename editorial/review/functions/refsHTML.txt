@@ -1,0 +1,1 @@
+function refsHTML(refs){return `<details class="source"><summary>자료 근거 · 창작 조건 · 검토 범위</summary>${[...new Set(refs)].map(k=>`<p><em>${esc(REF[k].name)}</em><br>${esc(REF[k].page)} — ${esc(REF[k].what)}</p>`).join('')}<p>정의와 교재의 설명은 위 자료를 재서술했습니다. 등장인물·그림·문제·수치와 별도 계산 모형은 학습용 창작입니다. 숏컷은 해당 정의와 가정에서 도출한 풀이 보충입니다. 원본 PDF는 들어 있지 않습니다. 모든 첨부의 전수 검토가 끝난 상태가 아닙니다.</p></details>`;}
