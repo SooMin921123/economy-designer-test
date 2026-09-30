@@ -1,0 +1,32 @@
+import fs from 'node:fs/promises';
+import assert from 'node:assert/strict';
+import { chromium } from '@playwright/test';
+const names=['CAST','CASES','LESSONS','STAGES','COURSE41','CL41','CT41','CU41','CAMPAIGNS42','PROJECTS42','WORKSHOPS42','GUIDES43','GUIDE_BY43'];
+const baseline=JSON.parse(await fs.readFile('editorial/catalog/runtime.json','utf8'));
+const browser=await chromium.launch();
+const context=await browser.newContext({serviceWorkers:'block',viewport:{width:1440,height:900}});
+const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
+await page.goto('http://127.0.0.1:4173/revised/economy-designer-4.3.1-ko.html');
+await page.waitForFunction(()=>{try{return typeof (0,eval)('courseGo41')==='function';}catch{return false;}});
+const actual=await page.evaluate(names=>Object.fromEntries(names.map(name=>{try{return[name,JSON.parse(JSON.stringify((0,eval)(name)))];}catch{return[name,null];}})),names);
+function shape(v,key=''){
+ if(Array.isArray(v))return v.map(x=>shape(x,key));
+ if(v&&typeof v==='object')return Object.fromEntries(Object.entries(v).filter(([k])=>k!=='headings').map(([k,x])=>[k,shape(x,k)]));
+ if(typeof v==='string')return ['id','key','ch','type','group','lesson','who','mode','action','refs'].includes(key)?v:'<TEXT>';
+ return v;
+}
+assert.deepEqual(shape(actual),shape(baseline),'Question structure, identifiers or numeric data changed');
+assert.equal(Object.keys(actual.CL41).length,72);assert.equal(actual.GUIDES43.length,30);
+assert(actual.COURSE41.lessons.length===72);
+const headingCount=Object.values(actual.CL41).filter(x=>Array.isArray(x.headings)&&x.headings.length===3).length;
+assert.equal(headingCount,72);
+assert.equal(errors.length,0,errors.join('\n'));
+const funcs=['homeHTML','courseHub41','courseUnit41','libraryHTML','courseLessonHTML41','courseTaskHTML41','courseHint41','courseRefs41','guideHub43','guidePage43','campaignHub42','campaignHTML42','projectHTML42','workshopHTML42','labResult42','settingsHTML','stageRestore431','releaseHTML42','report431','refsHTML','lessonHTML','playHTML','notesHTML','exportPWA42','exportPWA','exportNotes41','modeLabel41'];
+const functionTexts=await page.evaluate(names=>names.map(name=>{try{return {name,source:(0,eval)(name).toString()};}catch{return {name,source:null};}}),funcs);
+await fs.mkdir('editorial/review',{recursive:true});
+await fs.writeFile('editorial/review/current-functions.jsonl',functionTexts.map(x=>JSON.stringify(x)).join('\n')+'\n');
+await fs.writeFile('editorial/review/home.txt',await page.locator('body').innerText());
+await fs.writeFile('editorial/review/structure-check.json',JSON.stringify({passed:true,lessons:72,individualHeadings:headingCount,regularTasks:actual.COURSE41.chapters.reduce((n,c)=>n+c.main.length+c.review.length+c.transfer.length,0),allRuntimeTasks:Object.keys(actual.CT41).length,guides:30,errors,storageKey:await page.evaluate(()=>(0,eval)('STORE'))},null,2));
+await page.screenshot({path:'editorial/review/home-desktop.png',fullPage:true});
+await context.close();await browser.close();
+console.log('EDITORIAL_STRUCTURE_PASS: numeric data, answer keys, object structures and identifiers unchanged');
