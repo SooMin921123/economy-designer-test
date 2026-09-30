@@ -1,9 +1,9 @@
 {
-  "runId": "36670073074",
-  "commit": "24a265305011c0453b05228f218a752bcbda6b43",
+  "runId": "36670339331",
+  "commit": "3bf58dd6047db0e23eb941a37ec93d753ad0b714",
   "stats": {
-    "startTime": "2026-09-30T04:43:38.799Z",
-    "duration": 91010.565,
+    "startTime": "2026-09-30T04:47:03.310Z",
+    "duration": 108787.632,
     "expected": 36,
     "skipped": 0,
     "unexpected": 0,
@@ -16,7 +16,7 @@
       "project": "desktop-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 442,
+      "durationMs": 579,
       "errors": []
     },
     {
@@ -25,7 +25,7 @@
       "project": "desktop-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 571,
+      "durationMs": 731,
       "errors": []
     },
     {
@@ -34,7 +34,7 @@
       "project": "desktop-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 596,
+      "durationMs": 740,
       "errors": []
     },
     {
@@ -43,7 +43,7 @@
       "project": "desktop-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 556,
+      "durationMs": 671,
       "errors": []
     },
     {
@@ -52,7 +52,7 @@
       "project": "desktop-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 520,
+      "durationMs": 561,
       "errors": []
     },
     {
@@ -61,7 +61,7 @@
       "project": "desktop-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 432,
+      "durationMs": 530,
       "errors": []
     },
     {
@@ -70,7 +70,7 @@
       "project": "desktop-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 510,
+      "durationMs": 645,
       "errors": []
     },
     {
@@ -79,7 +79,7 @@
       "project": "mobile-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 527,
+      "durationMs": 563,
       "errors": []
     },
     {
@@ -88,7 +88,7 @@
       "project": "mobile-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 566,
+      "durationMs": 663,
       "errors": []
     },
     {
@@ -97,7 +97,7 @@
       "project": "mobile-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 643,
+      "durationMs": 657,
       "errors": []
     },
     {
@@ -106,7 +106,7 @@
       "project": "mobile-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 570,
+      "durationMs": 621,
       "errors": []
     },
     {
@@ -115,7 +115,7 @@
       "project": "mobile-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 454,
+      "durationMs": 483,
       "errors": []
     },
     {
@@ -124,7 +124,7 @@
       "project": "mobile-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 376,
+      "durationMs": 476,
       "errors": []
     },
     {
@@ -133,7 +133,7 @@
       "project": "mobile-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 506,
+      "durationMs": 618,
       "errors": []
     },
     {
@@ -142,7 +142,7 @@
       "project": "desktop-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 530,
+      "durationMs": 673,
       "errors": []
     },
     {
@@ -151,7 +151,7 @@
       "project": "desktop-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 14060,
+      "durationMs": 16700,
       "errors": []
     },
     {
@@ -160,7 +160,7 @@
       "project": "desktop-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 7022,
+      "durationMs": 9707,
       "errors": []
     },
     {
@@ -169,7 +169,7 @@
       "project": "desktop-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 15380,
+      "durationMs": 16882,
       "errors": []
     },
     {
@@ -178,7 +178,7 @@
       "project": "desktop-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 299,
+      "durationMs": 372,
       "errors": []
     },
     {
@@ -187,7 +187,7 @@
       "project": "mobile-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 504,
+      "durationMs": 634,
       "errors": []
     },
     {
@@ -196,7 +196,7 @@
       "project": "mobile-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 12611,
+      "durationMs": 15585,
       "errors": []
     },
     {
@@ -205,7 +205,7 @@
       "project": "mobile-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 5604,
+      "durationMs": 7461,
       "errors": []
     },
     {
@@ -214,7 +214,7 @@
       "project": "mobile-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 13308,
+      "durationMs": 15166,
       "errors": []
     },
     {
@@ -223,7 +223,7 @@
       "project": "mobile-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 279,
+      "durationMs": 374,
       "errors": []
     },
     {
@@ -232,7 +232,7 @@
       "project": "desktop-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 971,
+      "durationMs": 1240,
       "errors": []
     },
     {
@@ -241,7 +241,7 @@
       "project": "desktop-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 754,
+      "durationMs": 876,
       "errors": []
     },
     {
@@ -250,7 +250,7 @@
       "project": "desktop-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 657,
+      "durationMs": 792,
       "errors": []
     },
     {
@@ -259,7 +259,7 @@
       "project": "desktop-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 1091,
+      "durationMs": 1246,
       "errors": []
     },
     {
@@ -268,7 +268,7 @@
       "project": "desktop-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 1420,
+      "durationMs": 1185,
       "errors": []
     },
     {
@@ -277,7 +277,7 @@
       "project": "desktop-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 1718,
+      "durationMs": 1833,
       "errors": []
     },
     {
@@ -286,7 +286,7 @@
       "project": "mobile-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 863,
+      "durationMs": 1190,
       "errors": []
     },
     {
@@ -295,7 +295,7 @@
       "project": "mobile-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 774,
+      "durationMs": 918,
       "errors": []
     },
     {
@@ -304,7 +304,7 @@
       "project": "mobile-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 690,
+      "durationMs": 768,
       "errors": []
     },
     {
@@ -313,7 +313,7 @@
       "project": "mobile-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 1109,
+      "durationMs": 1359,
       "errors": []
     },
     {
@@ -322,7 +322,7 @@
       "project": "mobile-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 884,
+      "durationMs": 1120,
       "errors": []
     },
     {
@@ -331,7 +331,7 @@
       "project": "mobile-chromium",
       "status": "expected",
       "resultStatus": "passed",
-      "durationMs": 1362,
+      "durationMs": 1790,
       "errors": []
     }
   ],
