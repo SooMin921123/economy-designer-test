@@ -1,1 +1,1 @@
-ko-2 first integration: 72 lesson drafts; remaining exercise and interface review continues on this branch.
+ko-2 integration run 2: verify authored-input schemas, actual 72-lesson rendering and original safety regressions.
