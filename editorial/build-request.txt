@@ -1,1 +1,1 @@
-Review request 2: 72 lessons, 195 regular questions, 24 integrated-case questions and all 30 guided practices. Interface and legacy case copyediting remains in progress.
+Review request 4: all 72 course lessons, 219 course tasks, 30 guided practices, 12 legacy lessons and 36 legacy stages, 16 units, 6 campaigns, 6 writing projects, 12 experiments, characters and case introductions are revised. Compile the presentation and interface wording, verify numeric data and identifiers, and collect remaining active interface text. No production deployment in this workflow.
