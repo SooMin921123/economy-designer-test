@@ -4,7 +4,10 @@ on:
     branches: [main]
     paths:
       - 'source/**'
+      - 'editorial/**'
+      - 'revised/**'
       - 'scripts/**'
+      - 'tests/**'
       - 'deployment-tests/**'
       - 'package*.json'
       - 'playwright*.mjs'
@@ -19,7 +22,7 @@ jobs:
   build:
     if: github.repository == 'SooMin921123/economy-designer-test' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v6
         with:
@@ -27,19 +30,24 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - name: Verify unchanged original and learning content
+      - name: Verify preserved original and baseline recovery edits
         run: node scripts/verify-source.mjs
-      - name: Install dependencies and Chromium
+      - name: Install locked dependencies and Chromium
         run: |
-          npm install
-          npm ls @playwright/test > evidence/dependencies.txt
+          mkdir -p evidence
+          npm ci
+          npm ls @playwright/test acorn > evidence/dependencies.txt
           cp package-lock.json evidence/dependency-lock.json
           npx playwright install --with-deps chromium
-      - name: Run existing regression suite before deployment
+      - name: Run full content and functional regressions before deployment
         run: |
           set -o pipefail
           npm run test:e2e 2>&1 | tee evidence/predeploy.log
-      - name: Export clean app package with original icon artwork
+      - name: Record exact predeployment test outcomes
+        if: always()
+        run: |
+          if [ -f evidence/results.json ]; then node editorial/summarize-tests.mjs; fi
+      - name: Export clean Korean-edition package with original icon artwork
         run: node scripts/build-pages.mjs
       - name: Set up Pages
         uses: actions/configure-pages@v5
@@ -54,6 +62,8 @@ jobs:
           name: pages-build-evidence-${{ github.run_id }}
           path: |
             evidence/
+            editorial/reports/build.json
+            editorial/reports/regressions.json
             playwright-report/
             test-results/
           retention-days: 30
@@ -86,10 +96,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - name: Install fresh isolated browser tests
+      - name: Install locked dependencies and fresh isolated browsers
         run: |
           mkdir -p evidence
-          npm install
+          npm ci
           npm ls @playwright/test > evidence/live-dependencies.txt
           cp package-lock.json evidence/live-dependency-lock.json
           npx playwright install --with-deps chromium
