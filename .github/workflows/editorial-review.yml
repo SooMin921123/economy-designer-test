@@ -1,0 +1,45 @@
+name: Korean edition review
+on:
+  push:
+    branches: [editorial/ko-431]
+    paths: [.github/workflows/editorial-review.yml, editorial/build-request.txt]
+permissions:
+  contents: write
+jobs:
+  review:
+    if: github.ref == 'refs/heads/editorial/ko-431'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: editorial/ko-431
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install --ignore-scripts && npm install --no-save --ignore-scripts acorn@8.15.0
+      - run: npx playwright install --with-deps chromium
+      - name: Compile text-only edition
+        run: node editorial/build.mjs
+      - name: Check runtime data and collect current interface text
+        run: |
+          python3 -m http.server 4173 >/tmp/editorial-server.log 2>&1 &
+          sleep 2
+          node editorial/inspect.mjs
+      - name: Preserve review outputs on editorial branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add revised editorial/reports editorial/review
+          git diff --cached --quiet || git commit -m 'Build Korean edition and record structural verification'
+          git pull --rebase origin editorial/ko-431
+          git push origin HEAD:editorial/ko-431
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: korean-review-${{ github.run_id }}
+          path: |
+            revised/
+            editorial/reports/
+            editorial/review/
+          if-no-files-found: warn
